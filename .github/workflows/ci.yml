@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.15.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - name: Install asset renderer
+        run: sudo apt-get update && sudo apt-get install --yes inkscape
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm verify
+      - uses: actions/upload-artifact@v4
+        with:
+          name: brand-release-candidate
+          path: dist/
+          if-no-files-found: error

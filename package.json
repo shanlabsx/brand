@@ -1,0 +1,37 @@
+{
+  "name": "@labsbyshan/brand",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Shan Labs brand system, design tokens, guidelines, and production assets.",
+  "type": "module",
+  "files": [
+    "assets",
+    "tokens/dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./tokens/dist/index.d.ts",
+      "default": "./tokens/dist/index.js"
+    },
+    "./colors.css": "./tokens/dist/colors.css",
+    "./tokens.json": "./tokens/dist/tokens.json",
+    "./logo/*": "./assets/logo/svg/*"
+  },
+  "scripts": {
+    "clean": "node scripts/clean.mjs",
+    "build:tokens": "node scripts/build-tokens.mjs",
+    "build:assets": "node scripts/build-assets.mjs",
+    "build": "pnpm clean && pnpm build:tokens && pnpm build:assets",
+    "validate": "node scripts/validate.mjs",
+    "test": "node --test",
+    "pack:brand": "node scripts/build-release.mjs",
+    "verify": "pnpm build && pnpm validate && pnpm test && pnpm pack:brand",
+    "prepack": "pnpm build && pnpm validate"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=22"
+  },
+  "packageManager": "pnpm@10.15.0",
+  "license": "UNLICENSED"
+}

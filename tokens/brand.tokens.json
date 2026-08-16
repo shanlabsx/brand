@@ -1,0 +1,38 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/format.json",
+  "color": {
+    "brand": {
+      "ignition": {
+        "50": { "$type": "color", "$value": "#FFF4F6", "$description": "Subtle branded surface." },
+        "100": { "$type": "color", "$value": "#FFE3E9", "$description": "Selected and highlighted surface." },
+        "300": { "$type": "color", "$value": "#FF91A7", "$description": "Soft illustration accent." },
+        "500": { "$type": "color", "$value": "#FF4F70", "$description": "Primary Shan Labs brand color." },
+        "700": { "$type": "color", "$value": "#C62F4E", "$description": "Accessible primary action with white text." },
+        "900": { "$type": "color", "$value": "#6E1329", "$description": "Deep brand emphasis." }
+      }
+    },
+    "foundation": {
+      "ink": { "$type": "color", "$value": "#0B1020", "$description": "Primary text and dark surface." },
+      "slate": { "$type": "color", "$value": "#4E586D", "$description": "Secondary text." },
+      "mist": { "$type": "color", "$value": "#E5E8EE", "$description": "Borders and separators." },
+      "cloud": { "$type": "color", "$value": "#F7F8FA", "$description": "Default light surface." },
+      "moon": { "$type": "color", "$value": "#F3F0EB", "$description": "Warm editorial surface." },
+      "white": { "$type": "color", "$value": "#FFFFFF", "$description": "Pure reversed foreground." }
+    },
+    "accent": {
+      "aurora": { "$type": "color", "$value": "#765CFF", "$description": "AI and experimental product features." },
+      "fern": { "$type": "color", "$value": "#2FA67D", "$description": "Success, growth, and New Zealand context." },
+      "solar": { "$type": "color", "$value": "#F5B942", "$description": "Achievement, warning, and creative energy." }
+    },
+    "semantic": {
+      "background": { "$type": "color", "$value": "{color.foundation.cloud}" },
+      "foreground": { "$type": "color", "$value": "{color.foundation.ink}" },
+      "primary": { "$type": "color", "$value": "{color.brand.ignition.500}" },
+      "primaryAction": { "$type": "color", "$value": "{color.brand.ignition.700}" },
+      "primarySubtle": { "$type": "color", "$value": "{color.brand.ignition.100}" },
+      "success": { "$type": "color", "$value": "{color.accent.fern}" },
+      "warning": { "$type": "color", "$value": "{color.accent.solar}" },
+      "intelligence": { "$type": "color", "$value": "{color.accent.aurora}" }
+    }
+  }
+}

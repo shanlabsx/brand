@@ -1,0 +1,31 @@
+{
+  "$schema": "./schemas/brand-config.schema.json",
+  "brand": {
+    "name": "Shan Labs",
+    "handle": "labsbyshan",
+    "version": "0.1.0",
+    "status": "candidate"
+  },
+  "source": {
+    "symbol": "source/logo/symbol.svg"
+  },
+  "outputs": {
+    "svgDirectory": "assets/logo/svg",
+    "rasterDirectory": "assets/logo/png",
+    "iconDirectory": "assets/icons",
+    "tokenDirectory": "tokens/dist",
+    "releaseDirectory": "dist"
+  },
+  "requiredAssets": [
+    "assets/logo/svg/symbol-coral.svg",
+    "assets/logo/svg/symbol-ink.svg",
+    "assets/logo/svg/symbol-white.svg",
+    "assets/icons/favicon.svg",
+    "assets/logo/png/symbol-coral-512.png",
+    "assets/icons/favicon-32.png",
+    "tokens/dist/colors.css",
+    "tokens/dist/index.js",
+    "tokens/dist/index.d.ts",
+    "tokens/dist/tokens.json"
+  ]
+}

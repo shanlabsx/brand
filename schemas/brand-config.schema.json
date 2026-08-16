@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://labsbyshan.com/schemas/brand-config.schema.json",
+  "title": "Shan Labs brand configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["brand", "source", "outputs", "requiredAssets"],
+  "properties": {
+    "brand": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "handle", "version", "status"],
+      "properties": {
+        "name": { "const": "Shan Labs" },
+        "handle": { "const": "labsbyshan" },
+        "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+        "status": { "enum": ["draft", "candidate", "approved", "deprecated"] }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["symbol"],
+      "properties": { "symbol": { "type": "string" } }
+    },
+    "outputs": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "requiredAssets": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    }
+  }
+}

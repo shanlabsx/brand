@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Shan Labs symbol</title>
+  <desc id="desc">An interlocking geometric S expressing stable construction and forward motion.</desc>
+  <mask id="connector-cut">
+    <rect width="512" height="512" fill="#FFFFFF"/>
+    <path fill="#000000" d="m256 222 50 34-50 34-50-34Z"/>
+  </mask>
+  <g mask="url(#connector-cut)">
+    <path fill="#FFFFFF" d="M184 72h240l-38 64H190c-35 0-58 19-58 48s23 48 58 48h74l-38 64h-36c-76 0-126-45-126-112S114 72 184 72Z"/>
+    <path fill="#FFFFFF" d="M328 440H88l38-64h196c35 0 58-19 58-48s-23-48-58-48h-74l38-64h36c76 0 126 45 126 112s-50 112-120 112Z"/>
+  </g>
+</svg>
