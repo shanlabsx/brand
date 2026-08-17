@@ -20,8 +20,11 @@
     "source": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["symbol"],
-      "properties": { "symbol": { "type": "string" } }
+      "required": ["symbol", "wordmark"],
+      "properties": {
+        "symbol": { "type": "string" },
+        "wordmark": { "type": "string" }
+      }
     },
     "outputs": {
       "type": "object",

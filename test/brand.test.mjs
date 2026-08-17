@@ -29,5 +29,38 @@ test('source symbol stays deterministic and self-contained', async () => {
   const svg = await readFile(`${root}/source/logo/symbol.svg`, 'utf8');
   assert.match(svg, /viewBox="0 0 512 512"/);
   assert.doesNotMatch(svg, /<text|<image|<script|href=/);
-  assert.equal((svg.match(/#FF4F70/g) ?? []).length, 2);
+  assert.equal((svg.match(/fill="#FF4F70"/g) ?? []).length, 2);
+  assert.match(svg, /<mask id="connector-cut">/);
+  assert.match(svg, /<g mask="url\(#connector-cut\)">/);
+});
+
+test('source wordmark spells Shan Labs with a distinct word space', async () => {
+  const svg = await readFile(`${root}/source/logo/wordmark.svg`, 'utf8');
+  const positions = [...svg.matchAll(/data-x="([-\d.]+)"/g)].map((match) => Number(match[1]));
+  assert.equal(positions.length, 8);
+  const gaps = positions.slice(1).map((x, index) => x - positions[index]);
+  assert.ok(gaps[3] > 60, `word gap of ${gaps[3]} should read clearly as a space`);
+  assert.ok(gaps.every((gap, index) => index === 3 || gap < gaps[3]), 'word gap should be the widest gap');
+});
+
+test('generated variants carry variant-specific titles', async () => {
+  const favicon = await readFile(`${root}/assets/icons/favicon.svg`, 'utf8');
+  assert.match(favicon, /<title id="title">Shan Labs favicon<\/title>/);
+  const coral = await readFile(`${root}/assets/logo/svg/symbol-coral.svg`, 'utf8');
+  assert.match(coral, /<title id="title">Shan Labs symbol — coral<\/title>/);
+  const whiteLockup = await readFile(`${root}/assets/logo/svg/lockup-horizontal-white.svg`, 'utf8');
+  assert.match(whiteLockup, /<title id="title">Shan Labs horizontal lockup — white<\/title>/);
+});
+
+test('lockup variants use token colors without editor cruft', async () => {
+  const coral = await readFile(`${root}/assets/logo/svg/lockup-horizontal-coral.svg`, 'utf8');
+  assert.match(coral, /#FF4F70/);
+  assert.match(coral, /#0B1020/);
+  const white = await readFile(`${root}/assets/logo/svg/lockup-horizontal-white.svg`, 'utf8');
+  assert.doesNotMatch(white, /#FF4F70|#0B1020/);
+  for (const svg of [coral, white]) {
+    const colors = svg.match(/#[0-9A-Fa-f]{6}/g) ?? [];
+    assert.ok(colors.every((color) => color === color.toUpperCase()), 'colors must use token casing');
+    assert.doesNotMatch(svg, /c2pa:|sodipodi:|inkscape:/, 'no editor or provenance cruft');
+  }
 });

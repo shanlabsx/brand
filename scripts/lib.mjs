@@ -44,8 +44,12 @@ export function resolveTokenValue(value, tokens, seen = new Set()) {
   return resolveTokenValue(token.$value, tokens, new Set([...seen, reference]));
 }
 
+export function svgWithColors(source, replacements, title) {
+  let output = source.replace(/(<title[^>]*>).*?(<\/title>)/s, `$1${title}$2`);
+  for (const [from, to] of Object.entries(replacements)) output = output.replaceAll(from, to);
+  return output;
+}
+
 export function svgWithColor(source, color, title) {
-  return source
-    .replace(/<title>.*?<\/title>/, `<title>${title}</title>`)
-    .replaceAll('#FF4F70', color);
+  return svgWithColors(source, { '#FF4F70': color }, title);
 }

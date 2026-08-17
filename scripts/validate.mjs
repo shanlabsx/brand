@@ -21,11 +21,32 @@ for (const [name, token] of tokens) {
   }
 }
 
-const sourceSvg = await readFile(`${root}/${config.source.symbol}`, 'utf8');
-for (const forbidden of ['<script', '<image', 'href=', 'filter=', 'style=']) {
-  if (sourceSvg.includes(forbidden)) errors.push(`Source SVG contains forbidden content: ${forbidden}`);
+const forbiddenContent = ['<script', '<image', 'href=', 'filter=', 'style='];
+for (const [name, path] of Object.entries(config.source)) {
+  const svg = await readFile(`${root}/${path}`, 'utf8');
+  for (const forbidden of forbiddenContent) {
+    if (svg.includes(forbidden)) errors.push(`Source ${name} contains forbidden content: ${forbidden}`);
+  }
+  if (!svg.includes('viewBox="')) errors.push(`Source ${name} must declare a viewBox.`);
+  if (name === 'symbol' && !svg.includes('viewBox="0 0 512 512"')) errors.push('Source symbol must use the canonical 512 × 512 viewBox.');
 }
-if (!sourceSvg.includes('viewBox="0 0 512 512"')) errors.push('Source SVG must use the canonical 512 × 512 viewBox.');
+
+const tokenColors = new Set([...tokens.values()]
+  .filter((token) => token.$type === 'color')
+  .map((token) => resolveTokenValue(token.$value, tokens)));
+const functionalMaskColors = new Set(['#FFFFFF', '#000000']);
+for (const asset of config.requiredAssets) {
+  if (!asset.endsWith('.svg')) continue;
+  const svg = await readFile(`${root}/${asset}`, 'utf8');
+  for (const forbidden of [...forbiddenContent, 'c2pa:', 'sodipodi:', 'inkscape:']) {
+    if (svg.includes(forbidden)) errors.push(`${asset} contains forbidden content: ${forbidden}`);
+  }
+  for (const color of svg.match(/#[0-9A-Fa-f]{6}/g) ?? []) {
+    if (!tokenColors.has(color) && !functionalMaskColors.has(color)) {
+      errors.push(`${asset} uses non-token color ${color}`);
+    }
+  }
+}
 
 if (errors.length) {
   console.error(errors.map((error) => `✗ ${error}`).join('\n'));

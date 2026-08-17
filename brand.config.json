@@ -7,7 +7,8 @@
     "status": "candidate"
   },
   "source": {
-    "symbol": "source/logo/symbol.svg"
+    "symbol": "source/logo/symbol.svg",
+    "wordmark": "source/logo/wordmark.svg"
   },
   "outputs": {
     "svgDirectory": "assets/logo/svg",
@@ -20,7 +21,16 @@
     "assets/logo/svg/symbol-coral.svg",
     "assets/logo/svg/symbol-ink.svg",
     "assets/logo/svg/symbol-white.svg",
+    "assets/logo/svg/lockup-horizontal-coral.svg",
+    "assets/logo/svg/lockup-horizontal-ink.svg",
+    "assets/logo/svg/lockup-horizontal-white.svg",
+    "assets/logo/png/lockup-horizontal-coral-1024.png",
+    "assets/shan-labs-horizontal-coral.svg",
+    "assets/shan-labs-horizontal-coral.png",
+    "assets/shan-labs-symbol-coral.svg",
+    "assets/shan-labs-symbol-coral.png",
     "assets/icons/favicon.svg",
+    "assets/icons/avatar-dark.svg",
     "assets/logo/png/symbol-coral-512.png",
     "assets/icons/favicon-32.png",
     "tokens/dist/colors.css",
