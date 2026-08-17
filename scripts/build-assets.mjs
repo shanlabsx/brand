@@ -54,31 +54,35 @@ for (const [name, color] of Object.entries(variants)) {
   }
 }
 
-const symbolMask = symbolSource.match(/<mask[\s\S]*?<\/mask>/)?.[0];
+const symbolPaths = symbolSource.match(/<path\b[^>]*\/>/g);
 const symbolGeometry = symbolSource.match(/<g[\s\S]*?<\/g>/)?.[0];
 const wordmarkGeometry = wordmarkSource.match(/<g[\s\S]*<\/g>/)?.[0];
-if (!symbolMask || !symbolGeometry) throw new Error('Source symbol must contain a connector-cut mask and a root geometry group.');
+if (!symbolPaths || symbolPaths.length !== 3) throw new Error('Source symbol must contain three path elements.');
+if (!symbolGeometry) throw new Error('Source symbol must contain a root geometry group.');
 if (!wordmarkGeometry) throw new Error('Source wordmark must contain glyph groups.');
-const lockupTemplate = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1327.4 288" role="img" aria-labelledby="title desc">
-  <title id="title">Shan Labs horizontal lockup</title>
+const logoTemplate = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1079.1701 252.02001" role="img" aria-labelledby="title desc">
+  <title id="title">Shan Labs horizontal logo</title>
   <desc id="desc">The Shan Labs symbol and wordmark side by side.</desc>
-  <g transform="translate(24 24) scale(0.46875)">${symbolMask}${symbolGeometry}</g>
-  <g transform="translate(312 66) scale(1.1728)">${wordmarkGeometry}</g>
+  <g transform="translate(-14.437913 24)">${symbolPaths.join('\n    ')}</g>
+  <g transform="translate(249.945 63.746)">${wordmarkGeometry}</g>
 </svg>\n`;
 
-const lockupVariants = {
-  coral: {},
+const logoVariants = {
+  primary: {},
   ink: { '#FF4F70': '#0B1020' },
   white: { '#FF4F70': '#FFFFFF', '#0B1020': '#FFFFFF' }
 };
-for (const [name, replacements] of Object.entries(lockupVariants)) {
-  const svg = svgWithColors(lockupTemplate, replacements, `Shan Labs horizontal lockup — ${name}`);
-  const svgPath = `assets/logo/svg/lockup-horizontal-${name}.svg`;
+for (const [name, replacements] of Object.entries(logoVariants)) {
+  const svg = svgWithColors(logoTemplate, replacements, `Shan Labs horizontal logo — ${name}`);
+  const svgPath = `assets/logo/svg/logo-horizontal-${name}.svg`;
   await write(svgPath, svg);
   for (const width of [512, 1024]) {
-    await render(`${root}/${svgPath}`, `${root}/assets/logo/png/lockup-horizontal-${name}-${width}.png`, width);
+    await render(`${root}/${svgPath}`, `${root}/assets/logo/png/logo-horizontal-${name}-${width}.png`, width);
   }
 }
+
+await write('assets/logo/svg/wordmark-ink.svg', svgWithColors(wordmarkSource, {}, 'Shan Labs wordmark — ink'));
+await write('assets/logo/svg/wordmark-white.svg', svgWithColors(wordmarkSource, { '#0B1020': '#FFFFFF' }, 'Shan Labs wordmark — white'));
 
 const favicon = svgWithColor(symbolSource, '#FF4F70', 'Shan Labs favicon');
 await write('assets/icons/favicon.svg', favicon);
@@ -88,13 +92,7 @@ for (const size of [16, 32, 48, 180, 192, 512]) {
 
 const avatar = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Shan Labs avatar">
   <rect width="1024" height="1024" fill="#0B1020"/>
-  <g transform="translate(88 88) scale(1.65625)">${symbolMask}${symbolGeometry}</g>
+  <g transform="translate(88 88) scale(1.65625)">${symbolGeometry}</g>
 </svg>\n`;
 await write('assets/icons/avatar-dark.svg', avatar);
 await render(`${root}/assets/icons/avatar-dark.svg`, `${root}/assets/icons/avatar-dark-1024.png`, 1024);
-
-// Canonical top-level brand files mirror the library exports above.
-await write('assets/shan-labs-horizontal-coral.svg', svgWithColors(lockupTemplate, {}, 'Shan Labs horizontal lockup — coral'));
-await render(`${root}/assets/shan-labs-horizontal-coral.svg`, `${root}/assets/shan-labs-horizontal-coral.png`, 1024);
-await write('assets/shan-labs-symbol-coral.svg', svgWithColor(symbolSource, '#FF4F70', 'Shan Labs symbol — coral'));
-await render(`${root}/assets/shan-labs-symbol-coral.svg`, `${root}/assets/shan-labs-symbol-coral.png`, 512);

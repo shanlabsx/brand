@@ -10,6 +10,11 @@ The project follows [Semantic Versioning](https://semver.org/):
 
 ## [Unreleased]
 
+### Changed
+
+- Symbol geometry redefined as the approved three-bar mark (two horizontal rails linked by a diagonal bar).
+- Logo assets reorganized into `symbol-*`, `wordmark-*`, and `logo-horizontal-{primary,white,ink}`; the previous `lockup-horizontal-*` and top-level `shan-labs-*` files are removed.
+
 ### Added
 
 - Initial Shan Labs symbol and color system.

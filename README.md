@@ -22,6 +22,20 @@ The canonical source for the Shan Labs identity system, design tokens, guideline
 | `guidelines/` | Brand governance and usage | Review with brand changes |
 | `dist/` | Local release archives | Not committed |
 
+## Assets
+
+All logos live in `assets/logo/` (`svg/` and `png/`):
+
+| Asset | Files | Use |
+| --- | --- | --- |
+| `symbol-coral` / `symbol-ink` / `symbol-white` | SVG + PNG (128–1024) | The standalone mark |
+| `wordmark-ink` / `wordmark-white` | SVG | The standalone wordmark |
+| `logo-horizontal-primary` | SVG + PNG (512, 1024) | Full logo — light backgrounds (default) |
+| `logo-horizontal-white` | SVG + PNG (512, 1024) | Full logo — dark backgrounds |
+| `logo-horizontal-ink` | SVG + PNG (512, 1024) | Full logo — monochrome and print |
+
+`assets/icons/` holds the app-level icons (favicon, avatar). Import any SVG from the library via `@labsbyshan/brand/logo/<name>`.
+
 ## Quick start
 
 ```bash

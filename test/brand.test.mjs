@@ -28,10 +28,9 @@ test('approved interface color pairs meet WCAG AA for normal text', () => {
 test('source symbol stays deterministic and self-contained', async () => {
   const svg = await readFile(`${root}/source/logo/symbol.svg`, 'utf8');
   assert.match(svg, /viewBox="0 0 512 512"/);
-  assert.doesNotMatch(svg, /<text|<image|<script|href=/);
-  assert.equal((svg.match(/fill="#FF4F70"/g) ?? []).length, 2);
-  assert.match(svg, /<mask id="connector-cut">/);
-  assert.match(svg, /<g mask="url\(#connector-cut\)">/);
+  assert.doesNotMatch(svg, /<text|<image|<script|href=|mask/);
+  assert.equal((svg.match(/fill="#FF4F70"/g) ?? []).length, 3);
+  assert.match(svg, /scale\(2\.031746031746032\)/);
 });
 
 test('source wordmark spells Shan Labs with a distinct word space', async () => {
@@ -48,17 +47,17 @@ test('generated variants carry variant-specific titles', async () => {
   assert.match(favicon, /<title id="title">Shan Labs favicon<\/title>/);
   const coral = await readFile(`${root}/assets/logo/svg/symbol-coral.svg`, 'utf8');
   assert.match(coral, /<title id="title">Shan Labs symbol — coral<\/title>/);
-  const whiteLockup = await readFile(`${root}/assets/logo/svg/lockup-horizontal-white.svg`, 'utf8');
-  assert.match(whiteLockup, /<title id="title">Shan Labs horizontal lockup — white<\/title>/);
+  const whiteLogo = await readFile(`${root}/assets/logo/svg/logo-horizontal-white.svg`, 'utf8');
+  assert.match(whiteLogo, /<title id="title">Shan Labs horizontal logo — white<\/title>/);
 });
 
-test('lockup variants use token colors without editor cruft', async () => {
-  const coral = await readFile(`${root}/assets/logo/svg/lockup-horizontal-coral.svg`, 'utf8');
-  assert.match(coral, /#FF4F70/);
-  assert.match(coral, /#0B1020/);
-  const white = await readFile(`${root}/assets/logo/svg/lockup-horizontal-white.svg`, 'utf8');
+test('logo variants use token colors without editor cruft', async () => {
+  const primary = await readFile(`${root}/assets/logo/svg/logo-horizontal-primary.svg`, 'utf8');
+  assert.match(primary, /#FF4F70/);
+  assert.match(primary, /#0B1020/);
+  const white = await readFile(`${root}/assets/logo/svg/logo-horizontal-white.svg`, 'utf8');
   assert.doesNotMatch(white, /#FF4F70|#0B1020/);
-  for (const svg of [coral, white]) {
+  for (const svg of [primary, white]) {
     const colors = svg.match(/#[0-9A-Fa-f]{6}/g) ?? [];
     assert.ok(colors.every((color) => color === color.toUpperCase()), 'colors must use token casing');
     assert.doesNotMatch(svg, /c2pa:|sodipodi:|inkscape:/, 'no editor or provenance cruft');

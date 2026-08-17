@@ -11,7 +11,15 @@ Use “Shan Labs” as the company and product-studio name. “Labs by Shan” m
 
 ## Identity idea
 
-The symbol is a geometric `S` built from two stable, interlocking structures. Its central motion expresses connection, iteration, and shipping. It must remain abstract: never add a literal rocket, fern, planet, flame, atom, or code bracket.
+The symbol is an abstract geometric mark: three stacked bars whose middle bar runs diagonally, linking the two horizontal rails. Its angled center expresses connection, iteration, and shipping. It must remain abstract: never add a literal rocket, fern, planet, flame, atom, or code bracket.
+
+## Logos
+
+The primary logo pairs the symbol with the wordmark “Shan Labs” set to its right. Use the approved wordmark letterforms and keep the space between “Shan” and “Labs”.
+
+- Use the `primary` variant (coral symbol, ink wordmark) on light backgrounds.
+- Use the `white` variant on dark backgrounds.
+- Use the `ink` variant for monochrome contexts and print.
 
 ## Primary palette
 
