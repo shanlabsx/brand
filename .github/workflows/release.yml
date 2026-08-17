@@ -9,23 +9,39 @@ permissions:
 
 jobs:
   release:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          version: 10.15.0
-      - uses: actions/setup-node@v4
+          persist-credentials: false
+      - name: Set up pnpm
+        uses: pnpm/action-setup@0e279bb959325dab635dd2c09392533439d90093 # v6.0.8
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: 22
           cache: pnpm
-      - name: Install asset renderer
-        run: sudo apt-get update && sudo apt-get install --yes inkscape
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm verify
+          cache-dependency-path: pnpm-lock.yaml
       - name: Verify tag and brand versions match
         run: node scripts/verify-release-version.mjs "${GITHUB_REF_NAME}"
+      - name: Install asset renderer
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends inkscape
+          inkscape --version
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Verify and package brand assets
+        run: pnpm verify
+      - name: Verify generated assets are committed
+        run: |
+          if [[ -n "$(git status --porcelain --untracked-files=all)" ]]; then
+            git status --short
+            git diff --exit-code
+            exit 1
+          fi
       - name: Publish GitHub Release
         env:
           GH_TOKEN: ${{ github.token }}
