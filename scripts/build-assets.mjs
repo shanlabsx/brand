@@ -59,10 +59,11 @@ for (const size of [16, 32, 48, 180, 192, 512]) {
   await render(`${root}/assets/icons/favicon.svg`, `${root}/assets/icons/favicon-${size}.png`, size);
 }
 
-const symbolGeometry = source.match(/<mask[\s\S]*<\/svg>/)[0].replace('</svg>', '');
+const symbolGeometry = source.match(/<g[\s\S]*<\/g>/)?.[0];
+if (!symbolGeometry) throw new Error('Source symbol must contain a root geometry group.');
 const avatar = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Shan Labs avatar">
   <rect width="1024" height="1024" fill="#0B1020"/>
-  <g transform="translate(215 215) scale(1.16)">${symbolGeometry}</g>
+  <svg x="88" y="88" width="848" height="848" viewBox="0 0 512 512">${symbolGeometry}</svg>
 </svg>\n`;
 await write('assets/icons/avatar-dark.svg', avatar);
 await render(`${root}/assets/icons/avatar-dark.svg`, `${root}/assets/icons/avatar-dark-1024.png`, 1024);
