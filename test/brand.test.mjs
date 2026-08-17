@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
+import { generatePalette } from '../scripts/build-docs.mjs';
 import { flattenTokens, readJson, resolveTokenValue, root } from '../scripts/lib.mjs';
 
 function luminance(hex) {
@@ -49,6 +50,11 @@ test('generated variants carry variant-specific titles', async () => {
   assert.match(coral, /<title id="title">Shan Labs symbol — coral<\/title>/);
   const whiteLogo = await readFile(`${root}/assets/logos/svg/logo-horizontal-white.svg`, 'utf8');
   assert.match(whiteLogo, /<title id="title">Shan Labs horizontal logo — white<\/title>/);
+});
+
+test('docs palette.json stays in sync with canonical tokens', async () => {
+  const palette = generatePalette(await readJson('tokens/brand.tokens.json'), await readJson('brand.config.json'));
+  assert.deepEqual(JSON.parse(await readFile(`${root}/docs/palette.json`, 'utf8')), palette);
 });
 
 test('logo variants use token colors without editor cruft', async () => {

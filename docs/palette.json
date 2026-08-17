@@ -1,0 +1,203 @@
+{
+  "brand": {
+    "name": "Shan Labs",
+    "handle": "labsbyshan",
+    "version": "0.1.0",
+    "status": "candidate"
+  },
+  "sections": [
+    {
+      "id": "brand-ignition",
+      "title": "Ignition",
+      "caption": "Brand scale",
+      "featured": true,
+      "colors": [
+        {
+          "name": "50",
+          "token": "color.brand.ignition.50",
+          "hex": "#FFF4F6",
+          "cssVar": "--shan-color-brand-ignition-50",
+          "description": "Subtle branded surface."
+        },
+        {
+          "name": "100",
+          "token": "color.brand.ignition.100",
+          "hex": "#FFE3E9",
+          "cssVar": "--shan-color-brand-ignition-100",
+          "description": "Selected and highlighted surface."
+        },
+        {
+          "name": "300",
+          "token": "color.brand.ignition.300",
+          "hex": "#FF91A7",
+          "cssVar": "--shan-color-brand-ignition-300",
+          "description": "Soft illustration accent."
+        },
+        {
+          "name": "500",
+          "token": "color.brand.ignition.500",
+          "hex": "#FF4F70",
+          "cssVar": "--shan-color-brand-ignition-500",
+          "description": "Primary Shan Labs brand color."
+        },
+        {
+          "name": "700",
+          "token": "color.brand.ignition.700",
+          "hex": "#C62F4E",
+          "cssVar": "--shan-color-brand-ignition-700",
+          "description": "Accessible primary action with white text."
+        },
+        {
+          "name": "900",
+          "token": "color.brand.ignition.900",
+          "hex": "#6E1329",
+          "cssVar": "--shan-color-brand-ignition-900",
+          "description": "Deep brand emphasis."
+        }
+      ]
+    },
+    {
+      "id": "foundation",
+      "title": "Foundation",
+      "caption": "Neutrals and surfaces",
+      "featured": false,
+      "colors": [
+        {
+          "name": "Ink",
+          "token": "color.foundation.ink",
+          "hex": "#0B1020",
+          "cssVar": "--shan-color-foundation-ink",
+          "description": "Primary text and dark surface."
+        },
+        {
+          "name": "Slate",
+          "token": "color.foundation.slate",
+          "hex": "#4E586D",
+          "cssVar": "--shan-color-foundation-slate",
+          "description": "Secondary text."
+        },
+        {
+          "name": "Mist",
+          "token": "color.foundation.mist",
+          "hex": "#E5E8EE",
+          "cssVar": "--shan-color-foundation-mist",
+          "description": "Borders and separators."
+        },
+        {
+          "name": "Cloud",
+          "token": "color.foundation.cloud",
+          "hex": "#F7F8FA",
+          "cssVar": "--shan-color-foundation-cloud",
+          "description": "Default light surface."
+        },
+        {
+          "name": "Moon",
+          "token": "color.foundation.moon",
+          "hex": "#F3F0EB",
+          "cssVar": "--shan-color-foundation-moon",
+          "description": "Warm editorial surface."
+        },
+        {
+          "name": "White",
+          "token": "color.foundation.white",
+          "hex": "#FFFFFF",
+          "cssVar": "--shan-color-foundation-white",
+          "description": "Pure reversed foreground."
+        }
+      ]
+    },
+    {
+      "id": "accent",
+      "title": "Accent",
+      "caption": "Signal colors",
+      "featured": false,
+      "colors": [
+        {
+          "name": "Aurora",
+          "token": "color.accent.aurora",
+          "hex": "#765CFF",
+          "cssVar": "--shan-color-accent-aurora",
+          "description": "AI and experimental product features."
+        },
+        {
+          "name": "Fern",
+          "token": "color.accent.fern",
+          "hex": "#2FA67D",
+          "cssVar": "--shan-color-accent-fern",
+          "description": "Success, growth, and New Zealand context."
+        },
+        {
+          "name": "Solar",
+          "token": "color.accent.solar",
+          "hex": "#F5B942",
+          "cssVar": "--shan-color-accent-solar",
+          "description": "Achievement, warning, and creative energy."
+        }
+      ]
+    },
+    {
+      "id": "semantic",
+      "title": "Semantic",
+      "caption": "Role-based aliases",
+      "featured": false,
+      "colors": [
+        {
+          "name": "Background",
+          "token": "color.semantic.background",
+          "hex": "#F7F8FA",
+          "cssVar": "--shan-color-semantic-background",
+          "reference": "color.foundation.cloud"
+        },
+        {
+          "name": "Foreground",
+          "token": "color.semantic.foreground",
+          "hex": "#0B1020",
+          "cssVar": "--shan-color-semantic-foreground",
+          "reference": "color.foundation.ink"
+        },
+        {
+          "name": "Primary",
+          "token": "color.semantic.primary",
+          "hex": "#FF4F70",
+          "cssVar": "--shan-color-semantic-primary",
+          "reference": "color.brand.ignition.500"
+        },
+        {
+          "name": "Primary Action",
+          "token": "color.semantic.primaryAction",
+          "hex": "#C62F4E",
+          "cssVar": "--shan-color-semantic-primary-action",
+          "reference": "color.brand.ignition.700"
+        },
+        {
+          "name": "Primary Subtle",
+          "token": "color.semantic.primarySubtle",
+          "hex": "#FFE3E9",
+          "cssVar": "--shan-color-semantic-primary-subtle",
+          "reference": "color.brand.ignition.100"
+        },
+        {
+          "name": "Success",
+          "token": "color.semantic.success",
+          "hex": "#2FA67D",
+          "cssVar": "--shan-color-semantic-success",
+          "reference": "color.accent.fern"
+        },
+        {
+          "name": "Warning",
+          "token": "color.semantic.warning",
+          "hex": "#F5B942",
+          "cssVar": "--shan-color-semantic-warning",
+          "reference": "color.accent.solar"
+        },
+        {
+          "name": "Intelligence",
+          "token": "color.semantic.intelligence",
+          "hex": "#765CFF",
+          "cssVar": "--shan-color-semantic-intelligence",
+          "reference": "color.accent.aurora"
+        }
+      ]
+    }
+  ]
+}

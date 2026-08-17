@@ -20,6 +20,7 @@ The canonical source for the Shan Labs identity system, design tokens, guideline
 | `assets/` | Generated production exports | Never edit manually |
 | `tokens/dist/` | Generated code outputs | Never edit manually |
 | `guidelines/` | Brand governance and usage | Review with brand changes |
+| `docs/` | GitHub Pages palette site | HTML/CSS/JS authored; `docs/palette.json` and `docs/assets/` generated |
 | `dist/` | Local release archives | Not committed |
 
 ## Assets
@@ -49,7 +50,8 @@ Asset builds require [Inkscape](https://inkscape.org/) on `PATH`. The project ha
 Common commands:
 
 ```bash
-pnpm build          # Generate tokens, SVG variants, PNGs, and icons
+pnpm build          # Generate tokens, SVG variants, PNGs, icons, and docs
+pnpm build:docs     # Generate the GitHub Pages palette data
 pnpm validate       # Validate token references and asset invariants
 pnpm test           # Run deterministic unit tests
 pnpm pack:brand     # Create a versioned ZIP and SHA-256 checksum
@@ -76,6 +78,17 @@ import { brandColors } from "@labsbyshan/brand";
 
 console.log(brandColors["color.brand.ignition.500"]);
 ```
+
+## Colors
+
+Explore the full palette interactively at **<https://labsbyshan.github.io/brand/>** — click a swatch to copy its HEX value, or shift+click to copy its CSS variable.
+
+| Group | Colors |
+| --- | --- |
+| Brand — Ignition | `#FFF4F6` · `#FFE3E9` · `#FF91A7` · `#FF4F70` · `#C62F4E` · `#6E1329` |
+| Foundation | `#0B1020` · `#4E586D` · `#E5E8EE` · `#F7F8FA` · `#F3F0EB` · `#FFFFFF` |
+| Accent | `#765CFF` · `#2FA67D` · `#F5B942` |
+| Semantic | `background #F7F8FA` · `foreground #0B1020` · `primary #FF4F70` · `primaryAction #C62F4E` · `primarySubtle #FFE3E9` · `success #2FA67D` · `warning #F5B942` · `intelligence #765CFF` |
 
 ## Releasing
 

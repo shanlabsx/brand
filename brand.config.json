@@ -34,6 +34,8 @@
     "tokens/dist/colors.css",
     "tokens/dist/index.js",
     "tokens/dist/index.d.ts",
-    "tokens/dist/tokens.json"
+    "tokens/dist/tokens.json",
+    "docs/palette.json",
+    "docs/assets/symbol-coral.svg"
   ]
 }

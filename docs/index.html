@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Color system · Shan Labs</title>
+  <meta name="description" content="The Shan Labs brand palette: click a swatch to copy its HEX value, shift+click to copy its CSS variable.">
+  <link rel="icon" href="assets/symbol-coral.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="./" aria-label="Shan Labs brand home">
+        <img src="assets/symbol-coral.svg" alt="" width="26" height="26">
+        <span>Shan Labs</span>
+      </a>
+      <nav class="site-nav">
+        <a href="https://github.com/labsbyshan/brand">GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="hero-eyebrow">Brand system · v<span data-version>0.1.0</span></p>
+      <h1>The Shan Labs color system</h1>
+      <p class="hero-lede">Every brand, foundation, accent, and semantic color in one place, generated from the canonical token source. Click a swatch to copy its HEX value — shift+click copies the CSS variable.</p>
+      <ul class="hero-hints" aria-hidden="true">
+        <li><kbd>Click</kbd><span>copy HEX</span></li>
+        <li><kbd>⇧ Click</kbd><span>copy CSS variable</span></li>
+      </ul>
+    </section>
+
+    <div class="palette" data-palette></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <p>Generated from <code>tokens/brand.tokens.json</code> · v<span data-version>0.1.0</span></p>
+      <p><a href="https://github.com/labsbyshan/brand">labsbyshan/brand</a></p>
+    </div>
+  </footer>
+
+  <div class="toast" role="status" aria-live="polite" data-toast></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
