@@ -47,10 +47,10 @@ function render(input, output, width, height) {
 
 for (const [name, color] of Object.entries(variants)) {
   const svg = svgWithColor(symbolSource, color, `Shan Labs symbol — ${name}`);
-  const svgPath = `assets/logo/svg/symbol-${name}.svg`;
+  const svgPath = `assets/logos/svg/symbol-${name}.svg`;
   await write(svgPath, svg);
   for (const size of [128, 256, 512, 1024]) {
-    await render(`${root}/${svgPath}`, `${root}/assets/logo/png/symbol-${name}-${size}.png`, size);
+    await render(`${root}/${svgPath}`, `${root}/assets/logos/png/symbol-${name}-${size}.png`, size);
   }
 }
 
@@ -74,15 +74,15 @@ const logoVariants = {
 };
 for (const [name, replacements] of Object.entries(logoVariants)) {
   const svg = svgWithColors(logoTemplate, replacements, `Shan Labs horizontal logo — ${name}`);
-  const svgPath = `assets/logo/svg/logo-horizontal-${name}.svg`;
+  const svgPath = `assets/logos/svg/logo-horizontal-${name}.svg`;
   await write(svgPath, svg);
   for (const width of [512, 1024]) {
-    await render(`${root}/${svgPath}`, `${root}/assets/logo/png/logo-horizontal-${name}-${width}.png`, width);
+    await render(`${root}/${svgPath}`, `${root}/assets/logos/png/logo-horizontal-${name}-${width}.png`, width);
   }
 }
 
-await write('assets/logo/svg/wordmark-ink.svg', svgWithColors(wordmarkSource, {}, 'Shan Labs wordmark — ink'));
-await write('assets/logo/svg/wordmark-white.svg', svgWithColors(wordmarkSource, { '#0B1020': '#FFFFFF' }, 'Shan Labs wordmark — white'));
+await write('assets/logos/svg/wordmark-ink.svg', svgWithColors(wordmarkSource, {}, 'Shan Labs wordmark — ink'));
+await write('assets/logos/svg/wordmark-white.svg', svgWithColors(wordmarkSource, { '#0B1020': '#FFFFFF' }, 'Shan Labs wordmark — white'));
 
 const favicon = svgWithColor(symbolSource, '#FF4F70', 'Shan Labs favicon');
 await write('assets/icons/favicon.svg', favicon);

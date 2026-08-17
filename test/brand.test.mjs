@@ -26,7 +26,7 @@ test('approved interface color pairs meet WCAG AA for normal text', () => {
 });
 
 test('source symbol stays deterministic and self-contained', async () => {
-  const svg = await readFile(`${root}/source/logo/symbol.svg`, 'utf8');
+  const svg = await readFile(`${root}/source/logos/symbol.svg`, 'utf8');
   assert.match(svg, /viewBox="0 0 512 512"/);
   assert.doesNotMatch(svg, /<text|<image|<script|href=|mask/);
   assert.equal((svg.match(/fill="#FF4F70"/g) ?? []).length, 3);
@@ -34,7 +34,7 @@ test('source symbol stays deterministic and self-contained', async () => {
 });
 
 test('source wordmark spells Shan Labs with a distinct word space', async () => {
-  const svg = await readFile(`${root}/source/logo/wordmark.svg`, 'utf8');
+  const svg = await readFile(`${root}/source/logos/wordmark.svg`, 'utf8');
   const positions = [...svg.matchAll(/data-x="([-\d.]+)"/g)].map((match) => Number(match[1]));
   assert.equal(positions.length, 8);
   const gaps = positions.slice(1).map((x, index) => x - positions[index]);
@@ -45,17 +45,17 @@ test('source wordmark spells Shan Labs with a distinct word space', async () => 
 test('generated variants carry variant-specific titles', async () => {
   const favicon = await readFile(`${root}/assets/icons/favicon.svg`, 'utf8');
   assert.match(favicon, /<title id="title">Shan Labs favicon<\/title>/);
-  const coral = await readFile(`${root}/assets/logo/svg/symbol-coral.svg`, 'utf8');
+  const coral = await readFile(`${root}/assets/logos/svg/symbol-coral.svg`, 'utf8');
   assert.match(coral, /<title id="title">Shan Labs symbol — coral<\/title>/);
-  const whiteLogo = await readFile(`${root}/assets/logo/svg/logo-horizontal-white.svg`, 'utf8');
+  const whiteLogo = await readFile(`${root}/assets/logos/svg/logo-horizontal-white.svg`, 'utf8');
   assert.match(whiteLogo, /<title id="title">Shan Labs horizontal logo — white<\/title>/);
 });
 
 test('logo variants use token colors without editor cruft', async () => {
-  const primary = await readFile(`${root}/assets/logo/svg/logo-horizontal-primary.svg`, 'utf8');
+  const primary = await readFile(`${root}/assets/logos/svg/logo-horizontal-primary.svg`, 'utf8');
   assert.match(primary, /#FF4F70/);
   assert.match(primary, /#0B1020/);
-  const white = await readFile(`${root}/assets/logo/svg/logo-horizontal-white.svg`, 'utf8');
+  const white = await readFile(`${root}/assets/logos/svg/logo-horizontal-white.svg`, 'utf8');
   assert.doesNotMatch(white, /#FF4F70|#0B1020/);
   for (const svg of [primary, white]) {
     const colors = svg.match(/#[0-9A-Fa-f]{6}/g) ?? [];

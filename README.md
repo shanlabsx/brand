@@ -24,7 +24,7 @@ The canonical source for the Shan Labs identity system, design tokens, guideline
 
 ## Assets
 
-All logos live in `assets/logo/` (`svg/` and `png/`):
+All logos live in `assets/logos/` (`svg/` and `png/`):
 
 | Asset | Files | Use |
 | --- | --- | --- |
@@ -34,7 +34,7 @@ All logos live in `assets/logo/` (`svg/` and `png/`):
 | `logo-horizontal-white` | SVG + PNG (512, 1024) | Full logo — dark backgrounds |
 | `logo-horizontal-ink` | SVG + PNG (512, 1024) | Full logo — monochrome and print |
 
-`assets/icons/` holds the app-level icons (favicon, avatar). Import any SVG from the library via `@labsbyshan/brand/logo/<name>`.
+`assets/icons/` holds the app-level icons (favicon, avatar). Import any SVG from the library via `@labsbyshan/brand/logos/<name>`.
 
 ## Quick start
 

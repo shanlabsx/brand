@@ -15,7 +15,7 @@
     },
     "./colors.css": "./tokens/dist/colors.css",
     "./tokens.json": "./tokens/dist/tokens.json",
-    "./logo/*": "./assets/logo/svg/*"
+    "./logos/*": "./assets/logos/svg/*"
   },
   "scripts": {
     "clean": "node scripts/clean.mjs",
