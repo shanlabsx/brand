@@ -54,41 +54,75 @@ function showToast(value, prefix = 'Copied') {
 
 const copiedTimers = new WeakMap();
 
-async function onSwatchClick(button, color, event) {
-  const value = event.shiftKey ? color.cssVar : color.hex;
+// Shared by the chip (copies HEX) and the variable name (copies the CSS var)
+// — each is its own explicit click target instead of one button overloaded
+// with a hidden shift-click modifier.
+async function copyValue(trigger, value) {
   if (!(await copyText(value))) {
     showToast('copy failed — select the text manually', '');
     return;
   }
-  button.classList.add('copied');
-  clearTimeout(copiedTimers.get(button));
-  copiedTimers.set(button, setTimeout(() => button.classList.remove('copied'), 1200));
+  trigger.classList.add('copied');
+  clearTimeout(copiedTimers.get(trigger));
+  copiedTimers.set(trigger, setTimeout(() => trigger.classList.remove('copied'), 1200));
   showToast(value);
 }
 
 function renderSwatch(color) {
   const item = document.createElement('li');
-  const button = document.createElement('button');
-  button.type = 'button';
-  button.className = 'swatch';
-  if (color.description) button.title = color.description;
-  button.style.setProperty('--c', color.hex);
-  button.style.setProperty('--on', onColor(color.hex));
-  button.innerHTML = `
-    <span class="swatch-chip">
-      <span class="swatch-hex">${color.hex}</span>
-      <span class="swatch-badge">
-        <span class="badge-copy">${COPY_ICON}Copy</span>
-        <span class="badge-copied">${CHECK_ICON}Copied</span>
-      </span>
-    </span>
-    <span class="swatch-meta">
-      <span class="swatch-name">${color.name}</span>
-      <span class="swatch-var">${color.cssVar}</span>
-      ${color.reference ? `<span class="swatch-ref">→ ${color.reference}</span>` : ''}
+  item.className = 'swatch';
+  item.style.setProperty('--c', color.hex);
+  item.style.setProperty('--on', onColor(color.hex));
+
+  const chip = document.createElement('button');
+  chip.type = 'button';
+  chip.className = 'swatch-chip';
+  chip.title = color.description ? `${color.description} — click to copy HEX` : 'Click to copy HEX';
+  chip.innerHTML = `
+    <span class="swatch-hex">${color.hex}</span>
+    <span class="swatch-badge">
+      <span class="badge-copy">${COPY_ICON}Copy</span>
+      <span class="badge-copied">${CHECK_ICON}Copied</span>
     </span>`;
-  button.addEventListener('click', (event) => onSwatchClick(button, color, event));
-  item.appendChild(button);
+  chip.addEventListener('click', () => copyValue(chip, color.hex));
+
+  const varButton = document.createElement('button');
+  varButton.type = 'button';
+  varButton.className = 'swatch-var';
+  varButton.title = 'Click to copy CSS variable';
+  varButton.innerHTML = `
+    <span class="swatch-var-icon">
+      <span class="icon-copy">${COPY_ICON}</span>
+      <span class="icon-copied">${CHECK_ICON}</span>
+    </span>
+    <span class="swatch-var-text">${color.cssVar}</span>`;
+  varButton.addEventListener('click', () => copyValue(varButton, color.cssVar));
+
+  const meta = document.createElement('span');
+  meta.className = 'swatch-meta';
+  const name = document.createElement('span');
+  name.className = 'swatch-name';
+  name.textContent = color.name;
+  meta.append(name, varButton);
+  if (color.reference) {
+    const ref = document.createElement('span');
+    ref.className = 'swatch-ref';
+    ref.textContent = `→ ${color.reference}`;
+    meta.appendChild(ref);
+  }
+  if (color.usedAs?.length) {
+    const usage = document.createElement('span');
+    usage.className = 'swatch-usage';
+    for (const { mode, label } of color.usedAs) {
+      const pill = document.createElement('span');
+      pill.className = `usage-pill usage-pill--${mode}`;
+      pill.textContent = `${label} · ${mode === 'dark' ? 'Dark' : 'Light'}`;
+      usage.appendChild(pill);
+    }
+    meta.appendChild(usage);
+  }
+
+  item.append(chip, meta);
   return item;
 }
 

@@ -48,6 +48,13 @@ for (const asset of config.requiredAssets) {
   }
 }
 
+// docs/styles.css must consume generated CSS custom properties, never
+// hand-authored brand hex — guards against the exact drift this once had.
+const docsStyles = await readFile(`${root}/docs/styles.css`, 'utf8');
+for (const color of docsStyles.match(/#[0-9A-Fa-f]{6}/g) ?? []) {
+  errors.push(`docs/styles.css contains literal color ${color}; reference a var(--shan-color-*) custom property from colors.css instead`);
+}
+
 if (errors.length) {
   console.error(errors.map((error) => `✗ ${error}`).join('\n'));
   process.exitCode = 1;

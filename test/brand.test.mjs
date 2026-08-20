@@ -3,28 +3,69 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { generatePalette } from '../scripts/build-docs.mjs';
 import { flattenTokens, readJson, resolveTokenValue, root } from '../scripts/lib.mjs';
+import { contrastRatio, hexToOklch, oklchToHex } from '../scripts/color.mjs';
 
-function luminance(hex) {
-  const channels = hex.match(/[0-9A-F]{2}/g).map((value) => Number.parseInt(value, 16) / 255);
-  const linear = channels.map((value) => value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4);
-  return 0.2126 * linear[0] + 0.7152 * linear[1] + 0.0722 * linear[2];
-}
+const tokenDocument = await readJson('tokens/brand.tokens.json');
+const tokens = flattenTokens(tokenDocument);
+const at = (path) => {
+  const token = tokens.get(path);
+  if (!token) throw new Error(`Unknown token: ${path}`);
+  return resolveTokenValue(token.$value, tokens);
+};
 
-function contrast(foreground, background) {
-  const values = [luminance(foreground), luminance(background)].sort((a, b) => b - a);
-  return (values[0] + 0.05) / (values[1] + 0.05);
-}
-
-test('all token references resolve', async () => {
-  const tokens = flattenTokens(await readJson('tokens/brand.tokens.json'));
+test('all token references resolve', () => {
   for (const [, token] of tokens) assert.doesNotThrow(() => resolveTokenValue(token.$value, tokens));
 });
 
-test('approved interface color pairs meet WCAG AA for normal text', () => {
-  assert.ok(contrast('0B1020', 'FF4F70') >= 4.5, 'Cosmic Ink on Ignition Coral 500');
-  assert.ok(contrast('FFFFFF', 'C62F4E') >= 4.5, 'White on Ignition Coral 700');
-  assert.ok(contrast('0B1020', 'F7F8FA') >= 4.5, 'Cosmic Ink on Cloud White');
+test('color math round-trips every token through OKLCH without drift', () => {
+  for (const [name, token] of tokens) {
+    if (token.$type !== 'color') continue;
+    const hex = resolveTokenValue(token.$value, tokens);
+    assert.equal(oklchToHex(hexToOklch(hex)), hex, `${name} (${hex}) should round-trip through OKLCH`);
+  }
 });
+
+// Every pairing a consumer is expected to render as text, an icon, or a
+// filled UI control on top of another token. Declared once here so a future
+// token edit that breaks contrast fails the build instead of shipping.
+const TEXT_PAIRS = [
+  // Light mode — content directly on a surface.
+  ['color.semantic.light.foreground', 'color.semantic.light.background', 4.5, 'body text on page background'],
+  ['color.semantic.light.foreground', 'color.semantic.light.surface', 4.5, 'body text on card surface'],
+  ['color.semantic.light.foregroundMuted', 'color.semantic.light.background', 4.5, 'secondary text on page background'],
+  ['color.semantic.light.foregroundMuted', 'color.semantic.light.surface', 4.5, 'secondary text on card surface'],
+  ['color.semantic.light.success', 'color.semantic.light.background', 4.5, 'success text/icon on page background'],
+  ['color.semantic.light.success', 'color.semantic.light.surface', 4.5, 'success text/icon on card surface'],
+  ['color.semantic.light.warning', 'color.semantic.light.background', 4.5, 'warning text/icon on page background'],
+  ['color.semantic.light.warning', 'color.semantic.light.surface', 4.5, 'warning text/icon on card surface'],
+  ['color.semantic.light.intelligence', 'color.semantic.light.background', 4.5, 'intelligence text/icon on page background'],
+  ['color.semantic.light.intelligence', 'color.semantic.light.surface', 4.5, 'intelligence text/icon on card surface'],
+  // Light mode — text set on top of a filled control.
+  ['color.semantic.light.foreground', 'color.semantic.light.primary', 4.5, 'ink text on Ignition 500 primary button'],
+  ['color.foundation.white', 'color.brand.ignition.700', 4.5, 'white text on Ignition 700 reversed action'],
+  ['color.semantic.light.toastForeground', 'color.semantic.light.toastBackground', 4.5, 'toast text on toast fill'],
+  // Dark mode — content directly on a surface.
+  ['color.semantic.dark.foreground', 'color.semantic.dark.background', 4.5, 'dark body text on page background'],
+  ['color.semantic.dark.foreground', 'color.semantic.dark.surface', 4.5, 'dark body text on elevated surface'],
+  ['color.semantic.dark.foregroundMuted', 'color.semantic.dark.background', 4.5, 'dark secondary text on page background'],
+  ['color.semantic.dark.foregroundMuted', 'color.semantic.dark.surface', 4.5, 'dark secondary text on elevated surface'],
+  ['color.semantic.dark.primary', 'color.semantic.dark.background', 4.5, 'dark accent text on page background'],
+  ['color.semantic.dark.primary', 'color.semantic.dark.surface', 4.5, 'dark accent text on elevated surface'],
+  ['color.semantic.dark.success', 'color.semantic.dark.background', 4.5, 'dark success text/icon on page background'],
+  ['color.semantic.dark.success', 'color.semantic.dark.surface', 4.5, 'dark success text/icon on elevated surface'],
+  ['color.semantic.dark.warning', 'color.semantic.dark.background', 4.5, 'dark warning text/icon on page background'],
+  ['color.semantic.dark.warning', 'color.semantic.dark.surface', 4.5, 'dark warning text/icon on elevated surface'],
+  ['color.semantic.dark.intelligence', 'color.semantic.dark.background', 4.5, 'dark intelligence text/icon on page background'],
+  ['color.semantic.dark.intelligence', 'color.semantic.dark.surface', 4.5, 'dark intelligence text/icon on elevated surface'],
+  ['color.semantic.dark.toastForeground', 'color.semantic.dark.toastBackground', 4.5, 'dark toast text on toast fill']
+];
+
+for (const [fgPath, bgPath, minRatio, label] of TEXT_PAIRS) {
+  test(`WCAG AA (${minRatio}:1): ${label} [${fgPath} on ${bgPath}]`, () => {
+    const ratio = contrastRatio(at(fgPath), at(bgPath));
+    assert.ok(ratio >= minRatio, `${label}: ${ratio.toFixed(2)}:1, need ${minRatio}:1`);
+  });
+}
 
 test('source symbol stays deterministic and self-contained', async () => {
   const svg = await readFile(`${root}/source/logos/symbol.svg`, 'utf8');
@@ -53,8 +94,16 @@ test('generated variants carry variant-specific titles', async () => {
 });
 
 test('docs palette.json stays in sync with canonical tokens', async () => {
-  const palette = generatePalette(await readJson('tokens/brand.tokens.json'), await readJson('brand.config.json'));
+  const palette = generatePalette(tokenDocument, await readJson('brand.config.json'));
   assert.deepEqual(JSON.parse(await readFile(`${root}/docs/palette.json`, 'utf8')), palette);
+});
+
+test('docs colors.css stays in sync with tokens/dist/colors.css', async () => {
+  const [generated, copy] = await Promise.all([
+    readFile(`${root}/tokens/dist/colors.css`, 'utf8'),
+    readFile(`${root}/docs/assets/colors.css`, 'utf8')
+  ]);
+  assert.equal(copy, generated);
 });
 
 test('logo variants use token colors without editor cruft', async () => {

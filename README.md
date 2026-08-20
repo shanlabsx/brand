@@ -35,7 +35,7 @@ All logos live in `assets/logos/` (`svg/` and `png/`):
 | `logo-horizontal-white` | SVG + PNG (512, 1024) | Full logo — dark backgrounds |
 | `logo-horizontal-ink` | SVG + PNG (512, 1024) | Full logo — monochrome and print |
 
-`assets/icons/` holds the app-level icons (favicon, avatar). Import any SVG from the library via `@labsbyshan/brand/logos/<name>`.
+`assets/icons/` holds the app-level icons (favicon, avatar). Import any SVG from the library via `@shanlabsx/brand/logos/<name>`.
 
 ## Quick start
 
@@ -63,7 +63,7 @@ pnpm verify         # Run the complete release-quality pipeline
 CSS:
 
 ```css
-@import "@labsbyshan/brand/colors.css";
+@import "@shanlabsx/brand/colors.css";
 
 .button {
   color: var(--shan-color-foundation-ink);
@@ -74,21 +74,38 @@ CSS:
 JavaScript or TypeScript:
 
 ```ts
-import { brandColors } from "@labsbyshan/brand";
+import { brandColors, semanticColors } from "@shanlabsx/brand";
 
 console.log(brandColors["color.brand.ignition.500"]);
+console.log(semanticColors.dark.background); // "#0B1020"
 ```
+
+CSS custom properties auto-switch for dark mode — style with
+`var(--shan-color-semantic-background)` once and it resolves correctly under
+`prefers-color-scheme` in both themes, backed by `@media (prefers-color-scheme: dark)`
+in the generated stylesheet.
 
 ## Colors
 
-Explore the full palette interactively at **<https://labsbyshan.github.io/brand/>** — click a swatch to copy its HEX value, or shift+click to copy its CSS variable.
+Explore the full palette interactively at **<https://shanlabsx.github.io/brand/>** — click a swatch to copy its HEX value, or click a variable name to copy the CSS variable.
 
 | Group | Colors |
 | --- | --- |
-| Brand — Ignition | `#FFF4F6` · `#FFE3E9` · `#FF91A7` · `#FF4F70` · `#C62F4E` · `#6E1329` |
-| Foundation | `#0B1020` · `#4E586D` · `#E5E8EE` · `#F7F8FA` · `#F3F0EB` · `#FFFFFF` |
-| Accent | `#765CFF` · `#2FA67D` · `#F5B942` |
-| Semantic | `background #F7F8FA` · `foreground #0B1020` · `primary #FF4F70` · `primaryAction #C62F4E` · `primarySubtle #FFE3E9` · `success #2FA67D` · `warning #F5B942` · `intelligence #765CFF` |
+| Brand — Ignition (50/100/300/500/700/900) | `#FFF4F6` · `#FFE3E9` · `#FF91A7` · `#FF4F70` · `#C62F4E` · `#6E1329` |
+| Foundation | Ink `#0B1020` · Ink Surface `#191E30` · Ink Border `#2C3245` · Ink Muted `#7B869C` · Slate `#4E586D` · Mist `#E5E8EE` · Cloud `#F7F8FA` · Moon `#F3F0EB` · White `#FFFFFF` |
+| Accent — Aurora (100/300/500/700) | `#E8E9FF` · `#AEADFF` · `#765CFF` · `#7054F7` |
+| Accent — Fern (100/300/500/700) | `#E1EFE8` · `#87C7AB` · `#2FA67D` · `#00815D` |
+| Accent — Solar (100/300/500/700) | `#F3EADB` · `#D6B170` · `#F5B942` · `#946900` |
+| Semantic — light | `background #F7F8FA` · `foreground #0B1020` · `primary #FF4F70` · `primaryAction #C62F4E` · `success #00815D` · `warning #946900` · `intelligence #7054F7` |
+| Semantic — dark | `background #0B1020` · `foreground #FFFFFF` · `primary #FF91A7` · `success #87C7AB` · `warning #D6B170` · `intelligence #AEADFF` |
+
+Every accent family ships a `500` brand anchor plus a `700` step verified for
+WCAG AA text/icon contrast on light surfaces and a `300` step verified for
+dark surfaces — see [`guidelines/brand-guidelines.md`](guidelines/brand-guidelines.md#accessibility)
+for the full, test-enforced contrast table. Colors are never hand-picked:
+every derived step comes from `scripts/color.mjs`, an OKLCH-based generator
+that preserves hue/chroma from the approved anchor and only shifts
+perceptual lightness until the target contrast ratio is met.
 
 ## Releasing
 

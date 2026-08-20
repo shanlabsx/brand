@@ -5,14 +5,17 @@
       "ignition": {
         "50": { "$type": "color", "$value": "#FFF4F6", "$description": "Subtle branded surface." },
         "100": { "$type": "color", "$value": "#FFE3E9", "$description": "Selected and highlighted surface." },
-        "300": { "$type": "color", "$value": "#FF91A7", "$description": "Soft illustration accent." },
+        "300": { "$type": "color", "$value": "#FF91A7", "$description": "Soft illustration accent; the dark-mode primary (WCAG AA text on Cosmic Ink)." },
         "500": { "$type": "color", "$value": "#FF4F70", "$description": "Primary Shan Labs brand color." },
         "700": { "$type": "color", "$value": "#C62F4E", "$description": "Accessible primary action with white text." },
-        "900": { "$type": "color", "$value": "#6E1329", "$description": "Deep brand emphasis." }
+        "900": { "$type": "color", "$value": "#6E1329", "$description": "Deep brand emphasis; the dark-mode subtle fill." }
       }
     },
     "foundation": {
       "ink": { "$type": "color", "$value": "#0B1020", "$description": "Primary text and dark surface." },
+      "inkSurface": { "$type": "color", "$value": "#191E30", "$description": "Elevated dark-mode surface, one step above Cosmic Ink." },
+      "inkBorder": { "$type": "color", "$value": "#2C3245", "$description": "Dark-mode dividers and borders." },
+      "onInkMuted": { "$type": "color", "$value": "#7B869C", "$description": "Secondary text on Cosmic Ink or Ink Surface; WCAG AA verified against both (5.17:1 and 4.51:1)." },
       "slate": { "$type": "color", "$value": "#4E586D", "$description": "Secondary text." },
       "mist": { "$type": "color", "$value": "#E5E8EE", "$description": "Borders and separators." },
       "cloud": { "$type": "color", "$value": "#F7F8FA", "$description": "Default light surface." },
@@ -20,19 +23,61 @@
       "white": { "$type": "color", "$value": "#FFFFFF", "$description": "Pure reversed foreground." }
     },
     "accent": {
-      "aurora": { "$type": "color", "$value": "#765CFF", "$description": "AI and experimental product features." },
-      "fern": { "$type": "color", "$value": "#2FA67D", "$description": "Success, growth, and New Zealand context." },
-      "solar": { "$type": "color", "$value": "#F5B942", "$description": "Achievement, warning, and creative energy." }
+      "aurora": {
+        "100": { "$type": "color", "$value": "#E8E9FF", "$description": "Aurora subtle surface tint." },
+        "300": { "$type": "color", "$value": "#AEADFF", "$description": "Aurora accent for dark surfaces; WCAG AA text on Cosmic Ink (9.21:1)." },
+        "500": { "$type": "color", "$value": "#765CFF", "$description": "AI and experimental product features." },
+        "700": { "$type": "color", "$value": "#7054F7", "$description": "Accessible Aurora text and icons on light surfaces (WCAG AA, 4.60:1 on Cloud White)." }
+      },
+      "fern": {
+        "100": { "$type": "color", "$value": "#E1EFE8", "$description": "Fern subtle surface tint." },
+        "300": { "$type": "color", "$value": "#87C7AB", "$description": "Fern accent for dark surfaces; WCAG AA text on Cosmic Ink (9.73:1)." },
+        "500": { "$type": "color", "$value": "#2FA67D", "$description": "Success, growth, and New Zealand context." },
+        "700": { "$type": "color", "$value": "#00815D", "$description": "Accessible Fern text and icons on light surfaces (WCAG AA, 4.60:1 on Cloud White)." }
+      },
+      "solar": {
+        "100": { "$type": "color", "$value": "#F3EADB", "$description": "Solar subtle surface tint." },
+        "300": { "$type": "color", "$value": "#D6B170", "$description": "Solar accent for dark surfaces; WCAG AA text on Cosmic Ink (9.36:1)." },
+        "500": { "$type": "color", "$value": "#F5B942", "$description": "Achievement, warning, and creative energy. Decorative use only — below 3:1 non-text contrast on light surfaces, use solar.700 for icons, text, or borders." },
+        "700": { "$type": "color", "$value": "#946900", "$description": "Accessible Solar text and icons on light surfaces (WCAG AA, 4.62:1 on Cloud White)." }
+      }
     },
     "semantic": {
-      "background": { "$type": "color", "$value": "{color.foundation.cloud}" },
-      "foreground": { "$type": "color", "$value": "{color.foundation.ink}" },
-      "primary": { "$type": "color", "$value": "{color.brand.ignition.500}" },
-      "primaryAction": { "$type": "color", "$value": "{color.brand.ignition.700}" },
-      "primarySubtle": { "$type": "color", "$value": "{color.brand.ignition.100}" },
-      "success": { "$type": "color", "$value": "{color.accent.fern}" },
-      "warning": { "$type": "color", "$value": "{color.accent.solar}" },
-      "intelligence": { "$type": "color", "$value": "{color.accent.aurora}" }
+      "light": {
+        "background": { "$type": "color", "$value": "{color.foundation.cloud}" },
+        "surface": { "$type": "color", "$value": "{color.foundation.white}" },
+        "foreground": { "$type": "color", "$value": "{color.foundation.ink}" },
+        "foregroundMuted": { "$type": "color", "$value": "{color.foundation.slate}" },
+        "border": { "$type": "color", "$value": "{color.foundation.mist}" },
+        "primary": { "$type": "color", "$value": "{color.brand.ignition.500}" },
+        "primaryAction": { "$type": "color", "$value": "{color.brand.ignition.700}" },
+        "primarySubtle": { "$type": "color", "$value": "{color.brand.ignition.100}" },
+        "success": { "$type": "color", "$value": "{color.accent.fern.700}", "$description": "Text, icons, and borders — WCAG AA verified. Pair with successSubtle for fills." },
+        "successSubtle": { "$type": "color", "$value": "{color.accent.fern.100}" },
+        "warning": { "$type": "color", "$value": "{color.accent.solar.700}", "$description": "Text, icons, and borders — WCAG AA verified. Pair with warningSubtle for fills." },
+        "warningSubtle": { "$type": "color", "$value": "{color.accent.solar.100}" },
+        "intelligence": { "$type": "color", "$value": "{color.accent.aurora.700}", "$description": "Text, icons, and borders — WCAG AA verified. Pair with intelligenceSubtle for fills." },
+        "intelligenceSubtle": { "$type": "color", "$value": "{color.accent.aurora.100}" },
+        "focus": { "$type": "color", "$value": "{color.brand.ignition.500}" },
+        "toastBackground": { "$type": "color", "$value": "{color.foundation.ink}" },
+        "toastForeground": { "$type": "color", "$value": "{color.foundation.white}" }
+      },
+      "dark": {
+        "background": { "$type": "color", "$value": "{color.foundation.ink}" },
+        "surface": { "$type": "color", "$value": "{color.foundation.inkSurface}" },
+        "foreground": { "$type": "color", "$value": "{color.foundation.white}" },
+        "foregroundMuted": { "$type": "color", "$value": "{color.foundation.onInkMuted}" },
+        "border": { "$type": "color", "$value": "{color.foundation.inkBorder}" },
+        "primary": { "$type": "color", "$value": "{color.brand.ignition.300}" },
+        "primaryAction": { "$type": "color", "$value": "{color.brand.ignition.500}" },
+        "primarySubtle": { "$type": "color", "$value": "{color.brand.ignition.900}" },
+        "success": { "$type": "color", "$value": "{color.accent.fern.300}" },
+        "warning": { "$type": "color", "$value": "{color.accent.solar.300}" },
+        "intelligence": { "$type": "color", "$value": "{color.accent.aurora.300}" },
+        "focus": { "$type": "color", "$value": "{color.brand.ignition.300}" },
+        "toastBackground": { "$type": "color", "$value": "{color.foundation.white}" },
+        "toastForeground": { "$type": "color", "$value": "{color.foundation.ink}" }
+      }
     }
   }
 }

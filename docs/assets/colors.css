@@ -1,0 +1,99 @@
+/* Generated from tokens/brand.tokens.json. Do not edit. */
+:root {
+  --shan-color-brand-ignition-50: #FFF4F6;
+  --shan-color-brand-ignition-100: #FFE3E9;
+  --shan-color-brand-ignition-300: #FF91A7;
+  --shan-color-brand-ignition-500: #FF4F70;
+  --shan-color-brand-ignition-700: #C62F4E;
+  --shan-color-brand-ignition-900: #6E1329;
+  --shan-color-foundation-ink: #0B1020;
+  --shan-color-foundation-ink-surface: #191E30;
+  --shan-color-foundation-ink-border: #2C3245;
+  --shan-color-foundation-on-ink-muted: #7B869C;
+  --shan-color-foundation-slate: #4E586D;
+  --shan-color-foundation-mist: #E5E8EE;
+  --shan-color-foundation-cloud: #F7F8FA;
+  --shan-color-foundation-moon: #F3F0EB;
+  --shan-color-foundation-white: #FFFFFF;
+  --shan-color-accent-aurora-100: #E8E9FF;
+  --shan-color-accent-aurora-300: #AEADFF;
+  --shan-color-accent-aurora-500: #765CFF;
+  --shan-color-accent-aurora-700: #7054F7;
+  --shan-color-accent-fern-100: #E1EFE8;
+  --shan-color-accent-fern-300: #87C7AB;
+  --shan-color-accent-fern-500: #2FA67D;
+  --shan-color-accent-fern-700: #00815D;
+  --shan-color-accent-solar-100: #F3EADB;
+  --shan-color-accent-solar-300: #D6B170;
+  --shan-color-accent-solar-500: #F5B942;
+  --shan-color-accent-solar-700: #946900;
+  --shan-color-semantic-light-background: #F7F8FA;
+  --shan-color-semantic-light-surface: #FFFFFF;
+  --shan-color-semantic-light-foreground: #0B1020;
+  --shan-color-semantic-light-foreground-muted: #4E586D;
+  --shan-color-semantic-light-border: #E5E8EE;
+  --shan-color-semantic-light-primary: #FF4F70;
+  --shan-color-semantic-light-primary-action: #C62F4E;
+  --shan-color-semantic-light-primary-subtle: #FFE3E9;
+  --shan-color-semantic-light-success: #00815D;
+  --shan-color-semantic-light-success-subtle: #E1EFE8;
+  --shan-color-semantic-light-warning: #946900;
+  --shan-color-semantic-light-warning-subtle: #F3EADB;
+  --shan-color-semantic-light-intelligence: #7054F7;
+  --shan-color-semantic-light-intelligence-subtle: #E8E9FF;
+  --shan-color-semantic-light-focus: #FF4F70;
+  --shan-color-semantic-light-toast-background: #0B1020;
+  --shan-color-semantic-light-toast-foreground: #FFFFFF;
+  --shan-color-semantic-dark-background: #0B1020;
+  --shan-color-semantic-dark-surface: #191E30;
+  --shan-color-semantic-dark-foreground: #FFFFFF;
+  --shan-color-semantic-dark-foreground-muted: #7B869C;
+  --shan-color-semantic-dark-border: #2C3245;
+  --shan-color-semantic-dark-primary: #FF91A7;
+  --shan-color-semantic-dark-primary-action: #FF4F70;
+  --shan-color-semantic-dark-primary-subtle: #6E1329;
+  --shan-color-semantic-dark-success: #87C7AB;
+  --shan-color-semantic-dark-warning: #D6B170;
+  --shan-color-semantic-dark-intelligence: #AEADFF;
+  --shan-color-semantic-dark-focus: #FF91A7;
+  --shan-color-semantic-dark-toast-background: #FFFFFF;
+  --shan-color-semantic-dark-toast-foreground: #0B1020;
+
+  /* Auto-switching semantic aliases (default: light) */
+  --shan-color-semantic-background: #F7F8FA;
+  --shan-color-semantic-surface: #FFFFFF;
+  --shan-color-semantic-foreground: #0B1020;
+  --shan-color-semantic-foreground-muted: #4E586D;
+  --shan-color-semantic-border: #E5E8EE;
+  --shan-color-semantic-primary: #FF4F70;
+  --shan-color-semantic-primary-action: #C62F4E;
+  --shan-color-semantic-primary-subtle: #FFE3E9;
+  --shan-color-semantic-success: #00815D;
+  --shan-color-semantic-success-subtle: #E1EFE8;
+  --shan-color-semantic-warning: #946900;
+  --shan-color-semantic-warning-subtle: #F3EADB;
+  --shan-color-semantic-intelligence: #7054F7;
+  --shan-color-semantic-intelligence-subtle: #E8E9FF;
+  --shan-color-semantic-focus: #FF4F70;
+  --shan-color-semantic-toast-background: #0B1020;
+  --shan-color-semantic-toast-foreground: #FFFFFF;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --shan-color-semantic-background: #0B1020;
+    --shan-color-semantic-surface: #191E30;
+    --shan-color-semantic-foreground: #FFFFFF;
+    --shan-color-semantic-foreground-muted: #7B869C;
+    --shan-color-semantic-border: #2C3245;
+    --shan-color-semantic-primary: #FF91A7;
+    --shan-color-semantic-primary-action: #FF4F70;
+    --shan-color-semantic-primary-subtle: #6E1329;
+    --shan-color-semantic-success: #87C7AB;
+    --shan-color-semantic-warning: #D6B170;
+    --shan-color-semantic-intelligence: #AEADFF;
+    --shan-color-semantic-focus: #FF91A7;
+    --shan-color-semantic-toast-background: #FFFFFF;
+    --shan-color-semantic-toast-foreground: #0B1020;
+  }
+}

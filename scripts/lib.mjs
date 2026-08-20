@@ -50,6 +50,6 @@ export function svgWithColors(source, replacements, title) {
   return output;
 }
 
-export function svgWithColor(source, color, title) {
-  return svgWithColors(source, { '#FF4F70': color }, title);
+export function svgWithColor(source, fromColor, toColor, title) {
+  return svgWithColors(source, { [fromColor]: toColor }, title);
 }

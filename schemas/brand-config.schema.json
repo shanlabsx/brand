@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://labsbyshan.com/schemas/brand-config.schema.json",
+  "$id": "https://shanlabsx.com/schemas/brand-config.schema.json",
   "title": "Shan Labs brand configuration",
   "type": "object",
   "additionalProperties": false,
@@ -12,7 +12,7 @@
       "required": ["name", "handle", "version", "status"],
       "properties": {
         "name": { "const": "Shan Labs" },
-        "handle": { "const": "labsbyshan" },
+        "handle": { "const": "shanlabsx" },
         "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
         "status": { "enum": ["draft", "candidate", "approved", "deprecated"] }
       }

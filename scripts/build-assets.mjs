@@ -1,15 +1,24 @@
 import { mkdir, readFile } from 'node:fs/promises';
 import { spawn } from 'node:child_process';
-import { root, readJson, svgWithColor, svgWithColors, write } from './lib.mjs';
+import { root, readJson, flattenTokens, resolveTokenValue, svgWithColor, svgWithColors, write } from './lib.mjs';
 
 const config = await readJson('brand.config.json');
 const symbolSource = await readFile(new URL(`../${config.source.symbol}`, import.meta.url), 'utf8');
 const wordmarkSource = await readFile(new URL(`../${config.source.wordmark}`, import.meta.url), 'utf8');
-const variants = {
-  coral: '#FF4F70',
-  ink: '#0B1020',
-  white: '#FFFFFF'
-};
+
+// Colors come from tokens/brand.tokens.json — the canonical source — never
+// hardcoded here, so a token change can't silently drift from the assets it produces.
+const tokens = flattenTokens(await readJson('tokens/brand.tokens.json'));
+function tokenHex(name) {
+  const token = tokens.get(name);
+  if (!token) throw new Error(`Unknown token: ${name}`);
+  return resolveTokenValue(token.$value, tokens);
+}
+const CORAL = tokenHex('color.brand.ignition.500');
+const INK = tokenHex('color.foundation.ink');
+const WHITE = tokenHex('color.foundation.white');
+
+const variants = { coral: CORAL, ink: INK, white: WHITE };
 
 const runtimeHome = `${root}/.cache/render-home`;
 await Promise.all([
@@ -46,7 +55,7 @@ function render(input, output, width, height) {
 }
 
 for (const [name, color] of Object.entries(variants)) {
-  const svg = svgWithColor(symbolSource, color, `Shan Labs symbol — ${name}`);
+  const svg = svgWithColor(symbolSource, CORAL, color, `Shan Labs symbol — ${name}`);
   const svgPath = `assets/logos/svg/symbol-${name}.svg`;
   await write(svgPath, svg);
   for (const size of [128, 256, 512, 1024]) {
@@ -69,8 +78,8 @@ const logoTemplate = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1079.
 
 const logoVariants = {
   primary: {},
-  ink: { '#FF4F70': '#0B1020' },
-  white: { '#FF4F70': '#FFFFFF', '#0B1020': '#FFFFFF' }
+  ink: { [CORAL]: INK },
+  white: { [CORAL]: WHITE, [INK]: WHITE }
 };
 for (const [name, replacements] of Object.entries(logoVariants)) {
   const svg = svgWithColors(logoTemplate, replacements, `Shan Labs horizontal logo — ${name}`);
@@ -82,16 +91,16 @@ for (const [name, replacements] of Object.entries(logoVariants)) {
 }
 
 await write('assets/logos/svg/wordmark-ink.svg', svgWithColors(wordmarkSource, {}, 'Shan Labs wordmark — ink'));
-await write('assets/logos/svg/wordmark-white.svg', svgWithColors(wordmarkSource, { '#0B1020': '#FFFFFF' }, 'Shan Labs wordmark — white'));
+await write('assets/logos/svg/wordmark-white.svg', svgWithColors(wordmarkSource, { [INK]: WHITE }, 'Shan Labs wordmark — white'));
 
-const favicon = svgWithColor(symbolSource, '#FF4F70', 'Shan Labs favicon');
+const favicon = svgWithColors(symbolSource, {}, 'Shan Labs favicon');
 await write('assets/icons/favicon.svg', favicon);
 for (const size of [16, 32, 48, 180, 192, 512]) {
   await render(`${root}/assets/icons/favicon.svg`, `${root}/assets/icons/favicon-${size}.png`, size);
 }
 
 const avatar = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Shan Labs avatar">
-  <rect width="1024" height="1024" fill="#0B1020"/>
+  <rect width="1024" height="1024" fill="${INK}"/>
   <g transform="translate(88 88) scale(1.65625)">${symbolGeometry}</g>
 </svg>\n`;
 await write('assets/icons/avatar-dark.svg', avatar);

@@ -2,7 +2,7 @@
   "$schema": "./schemas/brand-config.schema.json",
   "brand": {
     "name": "Shan Labs",
-    "handle": "labsbyshan",
+    "handle": "shanlabsx",
     "version": "0.1.0",
     "status": "candidate"
   },

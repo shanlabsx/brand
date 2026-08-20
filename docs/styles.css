@@ -1,36 +1,34 @@
+/*
+ * Brand colors are never hardcoded here — they come from colors.css
+ * (generated from tokens/brand.tokens.json and loaded before this file).
+ * The --shan-color-semantic-* variables already auto-switch for
+ * prefers-color-scheme, so this layer only maps them to local names and
+ * carries the effect-only values (ring/shadow opacity) that aren't brand
+ * colors themselves.
+ */
 :root {
-  --bg: #F7F8FA;
-  --surface: #FFFFFF;
-  --text: #0B1020;
-  --text-muted: #4E586D;
-  --border: #E5E8EE;
-  --accent: #FF4F70;
-  --accent-deep: #C62F4E;
-  --focus: #FF4F70;
-  --header-bg: #0B1020;
+  --bg: var(--shan-color-semantic-background);
+  --surface: var(--shan-color-semantic-surface);
+  --text: var(--shan-color-semantic-foreground);
+  --text-muted: var(--shan-color-semantic-foreground-muted);
+  --border: var(--shan-color-semantic-border);
+  --accent: var(--shan-color-semantic-primary);
+  --accent-deep: var(--shan-color-semantic-primary-action);
+  --focus: var(--shan-color-semantic-focus);
+  --header-bg: var(--shan-color-foundation-ink);
   --header-border: rgba(255, 255, 255, 0.1);
-  --header-text: #FFFFFF;
-  --header-muted: #A6B0C6;
+  --header-text: var(--shan-color-foundation-white);
+  --header-muted: var(--shan-color-foundation-on-ink-muted);
   --chip-ring: rgba(11, 16, 32, 0.1);
   --shadow: 0 1px 2px rgba(11, 16, 32, 0.05), 0 10px 28px -12px rgba(11, 16, 32, 0.16);
-  --toast-bg: #0B1020;
-  --toast-text: #FFFFFF;
+  --toast-bg: var(--shan-color-semantic-toast-background);
+  --toast-text: var(--shan-color-semantic-toast-foreground);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #0B1020;
-    --surface: #141B30;
-    --text: #FFFFFF;
-    --text-muted: #9FA9C0;
-    --border: #26304B;
-    --accent: #FF91A7;
-    --accent-deep: #FF4F70;
-    --focus: #FF91A7;
     --chip-ring: rgba(255, 255, 255, 0.14);
     --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 12px 32px -12px rgba(0, 0, 0, 0.55);
-    --toast-bg: #FFFFFF;
-    --toast-text: #0B1020;
   }
 }
 
@@ -212,35 +210,37 @@ kbd {
 
 .swatch {
   display: block;
-  width: 100%;
-  padding: 0;
-  border: 0;
-  background: none;
-  font: inherit;
-  text-align: left;
   color: var(--text);
-  cursor: pointer;
-  border-radius: 14px;
 }
 
-.swatch:focus-visible {
-  outline: 2px solid var(--focus);
-  outline-offset: 3px;
-}
-
+/*
+ * Two independent, explicit click targets — the chip copies HEX, the
+ * variable name copies the CSS var — instead of one button overloaded with
+ * a shift-click modifier nobody discovers.
+ */
 .swatch-chip {
   position: relative;
   display: block;
+  width: 100%;
   height: 104px;
+  padding: 0;
+  border: 0;
   border-radius: 14px;
   background: var(--c);
   color: var(--on);
+  font: inherit;
+  cursor: pointer;
   box-shadow: inset 0 0 0 1px var(--chip-ring);
   transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 
-.swatch:hover .swatch-chip,
-.swatch:focus-visible .swatch-chip {
+.swatch-chip:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.swatch-chip:hover,
+.swatch-chip:focus-visible {
   transform: translateY(-2px);
   box-shadow: inset 0 0 0 1px var(--chip-ring), var(--shadow);
 }
@@ -278,9 +278,9 @@ kbd {
   transition: opacity 0.15s ease, transform 0.15s ease;
 }
 
-.swatch:hover .swatch-badge,
-.swatch:focus-visible .swatch-badge,
-.swatch.copied .swatch-badge {
+.swatch-chip:hover .swatch-badge,
+.swatch-chip:focus-visible .swatch-badge,
+.swatch-chip.copied .swatch-badge {
   opacity: 1;
   transform: none;
 }
@@ -289,9 +289,9 @@ kbd {
 
 .badge-copied { display: none; }
 
-.swatch.copied .badge-copy { display: none; }
+.swatch-chip.copied .badge-copy { display: none; }
 
-.swatch.copied .badge-copied {
+.swatch-chip.copied .badge-copied {
   display: inline-flex;
   align-items: center;
   gap: 5px;
@@ -308,10 +308,114 @@ kbd {
   font-weight: 600;
 }
 
-.swatch-var,
+/* Variable name — its own copy target, styled like a quiet pill button so
+   the click affordance reads clearly without competing with the chip. */
+.swatch-var {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin: 4px 0 0 -6px;
+  padding: 3px 6px;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  font: inherit;
+  font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 10.5px;
+  line-height: 1.5;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.swatch-var-icon {
+  display: inline-flex;
+  flex: none;
+  opacity: 0.7;
+  transition: opacity 0.15s ease;
+}
+
+.swatch-var-icon svg { display: block; width: 10px; height: 10px; }
+
+.swatch-var-icon .icon-copied { display: none; }
+
+.swatch-var-text { word-break: break-word; }
+
+.swatch-var:hover,
+.swatch-var:focus-visible {
+  color: var(--accent-deep);
+  background: color-mix(in srgb, currentColor 8%, transparent);
+}
+
+.swatch-var:hover .swatch-var-icon,
+.swatch-var:focus-visible .swatch-var-icon {
+  opacity: 1;
+}
+
+.swatch-var:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.swatch-var.copied {
+  color: var(--accent-deep);
+  background: color-mix(in srgb, currentColor 8%, transparent);
+}
+
+.swatch-var.copied .icon-copy { display: none; }
+
+.swatch-var.copied .icon-copied { display: inline-flex; }
+
+/*
+ * Which semantic role(s) this exact shade is wired to, computed from the
+ * tokens — answers "is this the primary color?" without the viewer having to
+ * cross-reference the semantic section. A shade can carry more than one
+ * pill (e.g. Ignition 500 is both light-mode Primary and dark-mode Primary
+ * Action), so this can't collapse to a single "active" indicator.
+ */
+.swatch-usage {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 6px;
+  padding: 0 6px;
+}
+
+.usage-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  font-size: 9.5px;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+  color: var(--text);
+  background: color-mix(in srgb, var(--c) 16%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--c) 32%, transparent);
+  white-space: nowrap;
+}
+
+.usage-pill::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex: none;
+  background: var(--c);
+}
+
+/* Hollow dot for light-mode roles, filled dot for dark-mode roles — a quiet
+   sun/moon cue that doesn't rely on color alone (the label text says it too). */
+.usage-pill--light::before {
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1.4px var(--c);
+}
+
 .swatch-ref {
   display: block;
   margin-top: 3px;
+  padding: 0 6px;
   font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
   font-size: 10.5px;
   line-height: 1.5;
