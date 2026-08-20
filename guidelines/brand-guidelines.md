@@ -4,7 +4,7 @@
 
 - **Organization handle:** `@shanlabsx`
 - **Display name:** Shan Labs
-- **Founder identity:** Alex Shan / `@byalexshan`
+- **Founder identity:** Alex Shan / `@alxshan`
 - **Preferred attribution:** Built by Shan Labs
 
 Use “Shan Labs” as the company and product-studio name. “Labs by Shan” may describe provenance but is not the primary display name. Do not use “Shan's Lab.”
