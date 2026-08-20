@@ -2,7 +2,7 @@
 
 The canonical source for the Shan Labs identity system, design tokens, guidelines, and production-ready assets.
 
-> Status: **Candidate** — assets may be used in Shan Labs-owned prototypes, but are not yet approved for trademark registration or third-party distribution.
+> Status: **Approved** — assets are approved for release, production use, and third-party distribution.
 
 ## Principles
 

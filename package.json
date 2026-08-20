@@ -1,7 +1,6 @@
 {
   "name": "@shanlabsx/brand",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
   "description": "Shan Labs brand system, design tokens, guidelines, and production assets.",
   "type": "module",
   "files": [

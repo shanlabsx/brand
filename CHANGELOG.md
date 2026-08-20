@@ -8,7 +8,7 @@ The project follows [Semantic Versioning](https://semver.org/):
 - **Minor:** new approved formats, templates, channels, or product accents.
 - **Patch:** corrected exports, metadata, documentation, or non-visual defects.
 
-## [Unreleased]
+## [1.0.0] - 2026-08-20
 
 ### Fixed
 
