@@ -109,13 +109,12 @@ perceptual lightness until the target contrast ratio is met.
 
 ## Releasing
 
-1. Move the brand status to `approved` when the release is authorized.
-2. Update `brand.version` and `package.json` together.
-3. Run `pnpm verify` and review the generated archive.
-4. Commit the approved source changes.
-5. Create an annotated tag such as `v1.0.0` and push it.
+1. Move the brand status to `approved` in `brand.config.json` when the release is authorized (skip if already approved).
+2. Add an `[Unreleased]` section to `CHANGELOG.md` with the notable changes, if one isn't already there.
+3. Run `pnpm release <x.y.z>` — it bumps `brand.version` and `package.json` together, dates the changelog entry, runs `pnpm verify`, and commits and tags the release locally.
+4. Review the commit (`git show HEAD`), then publish with `git push && git push origin v<x.y.z>`.
 
-The release workflow validates the repository and publishes the versioned ZIP plus checksum to GitHub Releases.
+Pushing the tag triggers the release workflow, which validates the repository and publishes the versioned ZIP plus checksum to GitHub Releases.
 
 ## Ownership
 
