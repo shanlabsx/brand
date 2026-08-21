@@ -17,7 +17,7 @@ The canonical source for the Shan Labs identity system, design tokens, guideline
 | --- | --- | --- |
 | `source/` | Canonical editable masters | Edit intentionally |
 | `tokens/brand.tokens.json` | Canonical design tokens | Edit intentionally |
-| `assets/` | Generated production exports | Never edit manually |
+| `assets/` | Approved, versioned production assets | Update only through visual review; never rewritten by builds |
 | `tokens/dist/` | Generated code outputs | Never edit manually |
 | `guidelines/` | Brand governance and usage | Review with brand changes |
 | `docs/` | GitHub Pages palette site | HTML/CSS/JS authored; `docs/palette.json` and `docs/assets/` generated |
@@ -45,18 +45,20 @@ pnpm install --frozen-lockfile
 pnpm verify
 ```
 
-Asset builds require [Inkscape](https://inkscape.org/) on `PATH`. The project has no runtime or development npm dependencies.
+The project has no runtime or development npm dependencies. Approved logos and icons are release inputs, not build outputs: routine builds never re-export or modify them.
 
 Common commands:
 
 ```bash
-pnpm build          # Generate tokens, SVG variants, PNGs, icons, and docs
+pnpm build          # Generate tokens and docs; preserve approved visual assets
 pnpm build:docs     # Generate the GitHub Pages palette data
 pnpm validate       # Validate token references and asset invariants
 pnpm test           # Run deterministic unit tests
 pnpm pack:brand     # Create a versioned ZIP and SHA-256 checksum
 pnpm verify         # Run the complete release-quality pipeline
 ```
+
+Logo and icon changes are intentionally separate from the software build. Update `source/` and `assets/` together through the visual approval workflow, review SVG geometry and rendered PNGs, then update the approved asset checksums. This avoids renderer-version drift and prevents a local build from overwriting reviewed artwork.
 
 ## Consuming design tokens
 

@@ -1,10 +1,42 @@
-import { access, readFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import { access, readFile, readdir } from 'node:fs/promises';
+import { relative, resolve } from 'node:path';
 import { root, flattenTokens, readJson, resolveTokenValue } from './lib.mjs';
 
 const config = await readJson('brand.config.json');
 const tokenDocument = await readJson('tokens/brand.tokens.json');
 const tokens = flattenTokens(tokenDocument);
 const errors = [];
+
+async function filesUnder(directory) {
+  const files = [];
+  for (const entry of await readdir(directory, { withFileTypes: true })) {
+    const path = resolve(directory, entry.name);
+    if (entry.isDirectory()) files.push(...await filesUnder(path));
+    else files.push(relative(root, path).replaceAll('\\', '/'));
+  }
+  return files;
+}
+
+const assetManifestPath = 'assets/manifest.json';
+const assetManifest = await readJson(assetManifestPath);
+if (assetManifest.algorithm !== 'sha256') errors.push(`Unsupported asset manifest algorithm: ${assetManifest.algorithm}`);
+
+const approvedAssetPaths = Object.keys(assetManifest.files).sort();
+const actualAssetPaths = (await filesUnder(resolve(root, 'assets')))
+  .filter((path) => path !== assetManifestPath && !path.split('/').some((part) => part.startsWith('.')))
+  .sort();
+
+for (const path of actualAssetPaths.filter((path) => !assetManifest.files[path])) {
+  errors.push(`Asset has not been approved: ${path}`);
+}
+for (const path of approvedAssetPaths.filter((path) => !actualAssetPaths.includes(path))) {
+  errors.push(`Approved asset is missing: ${path}`);
+}
+for (const path of approvedAssetPaths.filter((path) => actualAssetPaths.includes(path))) {
+  const digest = createHash('sha256').update(await readFile(resolve(root, path))).digest('hex');
+  if (digest !== assetManifest.files[path]) errors.push(`Approved asset checksum mismatch: ${path}`);
+}
 
 for (const asset of config.requiredAssets) {
   try { await access(`${root}/${asset}`); } catch { errors.push(`Missing required asset: ${asset}`); }

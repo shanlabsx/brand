@@ -5,9 +5,9 @@ Brand changes carry product-wide consequences. Keep each change focused, documen
 ## Workflow
 
 1. Create a branch from `main`.
-2. Change canonical files only: `source/`, `tokens/brand.tokens.json`, configuration, scripts, or guidelines.
+2. Change canonical files only: `source/`, `tokens/brand.tokens.json`, configuration, scripts, guidelines, or approved `assets/` when the change has completed visual review.
 3. Run `pnpm verify`.
-4. Commit generated assets with their canonical source changes.
+4. Commit generated token/docs outputs with their source changes. Commit logos and icons only after visual approval; routine builds do not generate them.
 5. Open a pull request that explains the intent, affected surfaces, accessibility impact, and migration path.
 
 ## Approval states

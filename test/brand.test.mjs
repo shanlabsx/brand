@@ -84,13 +84,38 @@ test('source wordmark spells Shan Labs with a distinct word space', async () => 
   assert.ok(gaps.every((gap, index) => index === 3 || gap < gaps[3]), 'word gap should be the widest gap');
 });
 
-test('generated variants carry variant-specific titles', async () => {
-  const favicon = await readFile(`${root}/assets/icons/favicon.svg`, 'utf8');
-  assert.match(favicon, /<title id="title">Shan Labs favicon<\/title>/);
-  const coral = await readFile(`${root}/assets/logos/svg/symbol-coral.svg`, 'utf8');
-  assert.match(coral, /<title id="title">Shan Labs symbol — coral<\/title>/);
-  const whiteLogo = await readFile(`${root}/assets/logos/svg/logo-horizontal-white.svg`, 'utf8');
-  assert.match(whiteLogo, /<title id="title">Shan Labs horizontal logo — white<\/title>/);
+test('routine build cannot rewrite approved visual assets', async () => {
+  const [packageDocument, cleanScript] = await Promise.all([
+    readJson('package.json'),
+    readFile(`${root}/scripts/clean.mjs`, 'utf8')
+  ]);
+  assert.doesNotMatch(packageDocument.scripts.build, /assets/);
+  assert.equal(packageDocument.scripts['build:assets'], undefined);
+  assert.doesNotMatch(cleanScript, /reset\(['"]assets\//);
+});
+
+test('approved visual assets preserve reviewed geometry', async () => {
+  const [favicon, avatar, primaryLogo] = await Promise.all([
+    readFile(`${root}/assets/icons/favicon.svg`, 'utf8'),
+    readFile(`${root}/assets/icons/avatar-dark.svg`, 'utf8'),
+    readFile(`${root}/assets/logos/svg/logo-horizontal-primary.svg`, 'utf8')
+  ]);
+
+  assert.match(favicon, /viewBox="0 0 16 16"/);
+  assert.match(favicon, /aria-label="Shan Labs"/);
+  assert.match(favicon, /M3 2H13V5H3Z/);
+  assert.match(favicon, /M3 6H9L13 10H7Z/);
+  assert.match(favicon, /M3 11H13V14H3Z/);
+
+  assert.match(avatar, /viewBox="0 0 512 512"/);
+  assert.match(avatar, /M136 112H376V184H136Z/);
+  assert.match(avatar, /M136 208H280L376 304H232Z/);
+  assert.match(avatar, /M136 328H376V400H136Z/);
+
+  assert.match(primaryLogo, /viewBox="0 0 983\.97 165"/);
+  assert.match(primaryLogo, /Symbol height = cap height × 1\.30; gap = symbol width × 0\.30\./);
+  assert.match(primaryLogo, /transform="scale\(0\.4296875\) translate\(-96 -64\)"/);
+  assert.match(primaryLogo, /transform="translate\(178\.75 15\.96\)"/);
 });
 
 test('docs palette.json stays in sync with canonical tokens', async () => {

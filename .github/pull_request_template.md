@@ -13,6 +13,7 @@
 ## Verification
 
 - [ ] `pnpm verify` passes
-- [ ] Generated files are included
+- [ ] Generated token/docs files are included
+- [ ] Logo/icon changes have completed visual review
 - [ ] Accessibility impact is documented
 - [ ] No unlicensed font or third-party mark is introduced

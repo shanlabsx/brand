@@ -19,9 +19,8 @@
   "scripts": {
     "clean": "node scripts/clean.mjs",
     "build:tokens": "node scripts/build-tokens.mjs",
-    "build:assets": "node scripts/build-assets.mjs",
     "build:docs": "node scripts/build-docs.mjs",
-    "build": "pnpm clean && pnpm build:tokens && pnpm build:assets && pnpm build:docs",
+    "build": "pnpm clean && pnpm build:tokens && pnpm build:docs",
     "validate": "node scripts/validate.mjs",
     "test": "node --test",
     "pack:brand": "node scripts/build-release.mjs",

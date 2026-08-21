@@ -29,16 +29,11 @@ jobs:
           node-version: 22
           cache: pnpm
           cache-dependency-path: pnpm-lock.yaml
-      - name: Install asset renderer
-        run: |
-          sudo apt-get update
-          sudo apt-get install --yes --no-install-recommends inkscape
-          inkscape --version
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Verify and package brand assets
         run: pnpm verify
-      - name: Verify generated assets are committed
+      - name: Verify generated outputs are committed
         run: |
           if [[ -n "$(git status --porcelain --untracked-files=all)" ]]; then
             git status --short
