@@ -1,7 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
-import { generatePalette } from '../scripts/build-docs.mjs';
+import { access, readFile } from 'node:fs/promises';
+import { basename, resolve } from 'node:path';
+import { DOCS_BRAND_ASSETS, generatePalette } from '../scripts/build-docs.mjs';
 import { flattenTokens, readJson, resolveTokenValue, root } from '../scripts/lib.mjs';
 import { contrastRatio, hexToOklch, oklchToHex } from '../scripts/color.mjs';
 
@@ -129,6 +130,40 @@ test('docs colors.css stays in sync with tokens/dist/colors.css', async () => {
     readFile(`${root}/docs/assets/colors.css`, 'utf8')
   ]);
   assert.equal(copy, generated);
+});
+
+test('docs use Pages-safe approved brand assets', async () => {
+  for (const source of DOCS_BRAND_ASSETS) {
+    const [approved, published] = await Promise.all([
+      readFile(resolve(root, source)),
+      readFile(resolve(root, 'docs/assets', basename(source)))
+    ]);
+    assert.deepEqual(published, approved, `${basename(source)} must match its approved asset`);
+  }
+
+  const pages = [
+    ['index.html', './'],
+    ['logos.html', './logos.html']
+  ];
+  for (const [page, currentHref] of pages) {
+    const html = await readFile(resolve(root, 'docs', page), 'utf8');
+    const brandLink = html.match(/<a class="brand"[\s\S]*?<\/a>/)?.[0] ?? '';
+    assert.match(brandLink, /assets\/logo-horizontal-white\.svg/);
+    assert.equal((brandLink.match(/<img\b/g) ?? []).length, 1, `${page} header must use one integrated logo image`);
+    assert.doesNotMatch(brandLink, /<span>Shan Labs<\/span>/);
+    assert.match(html, new RegExp(`<a href="${currentHref.replaceAll('.', '\\.')}" aria-current="page">`));
+    assert.doesNotMatch(html, /(?:src|href)="\.\.\/assets\//, `${page} must not escape the GitHub Pages root`);
+
+    for (const [, source] of html.matchAll(/<img\b[^>]*\bsrc="([^"]+)"/g)) {
+      await assert.doesNotReject(access(resolve(root, 'docs', source)), `${page}: missing ${source}`);
+    }
+  }
+});
+
+test('shared docs script tolerates pages without a palette', async () => {
+  const script = await readFile(`${root}/docs/app.js`, 'utf8');
+  assert.match(script, /if \(!paletteRoot\) return;/);
+  assert.match(script, /if \(paletteRoot\) \{/);
 });
 
 test('logo variants use token colors without editor cruft', async () => {

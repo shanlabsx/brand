@@ -11,23 +11,23 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="site-header">
     <div class="site-header-inner">
       <a class="brand" href="./" aria-label="Shan Labs brand home">
-        <img src="assets/symbol-coral.svg" alt="" width="26" height="26">
-        <span>Shan Labs</span>
+        <img class="brand-logo" src="assets/logo-horizontal-white.svg" alt="" width="131" height="22">
       </a>
-      <nav class="site-nav">
-        <a href="./">Colors</a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="./" aria-current="page">Colors</a>
         <a href="./logos.html">Logos</a>
-        <a href="https://github.com/shanlabsx/brand">GitHub <span aria-hidden="true">↗</span></a>
+        <a class="nav-github" href="https://github.com/shanlabsx/brand"><span class="nav-label">GitHub</span> <span aria-hidden="true">↗</span></a>
       </nav>
     </div>
   </header>
 
-  <main>
+  <main id="main-content">
     <section class="hero">
-      <p class="hero-eyebrow">Brand system · v<span data-version>0.1.0</span></p>
+      <p class="hero-eyebrow">Brand system · v<span data-version>2.0.0</span></p>
       <h1>The Shan Labs color system</h1>
       <p class="hero-lede">Every brand, foundation, accent, and semantic color in one place, generated from the canonical token source. Click a swatch to copy its HEX value, or click a variable name to copy the CSS variable.</p>
       <ul class="hero-hints" aria-hidden="true">
@@ -41,7 +41,7 @@
 
   <footer class="site-footer">
     <div class="site-footer-inner">
-      <p>Generated from <code>tokens/brand.tokens.json</code> · v<span data-version>0.1.0</span></p>
+      <p>Generated from <code>tokens/brand.tokens.json</code> · v<span data-version>2.0.0</span></p>
       <p><a href="https://github.com/shanlabsx/brand">shanlabsx/brand</a></p>
     </div>
   </footer>

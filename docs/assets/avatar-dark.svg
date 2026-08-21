@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Shan Labs avatar — dark</title>
+  <desc id="desc">The Shan Labs symbol on Cosmic Ink, padded for circular and rounded-square crops.</desc>
+  <rect width="512" height="512" fill="#0B1020"></rect>
+  <path fill="#FD4D6E" d="M136 112H376V184H136Z"></path>
+  <path fill="#FD4D6E" d="M136 208H280L376 304H232Z"></path>
+  <path fill="#FD4D6E" d="M136 328H376V400H136Z"></path>
+</svg>

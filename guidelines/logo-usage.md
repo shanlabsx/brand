@@ -56,10 +56,10 @@ asset includes additional space for circular and rounded-square crops.
 - The master symbol at 24px and above.
 - Print symbol: 6 mm minimum.
 
-The favicon version is a separate drawing on a 16px grid (rails 3px, gaps 2px,
-diagonal 4px). The master symbol's 1u gap resolves to 1px at 16px, which
-anti-aliasing greys out; the favicon version widens the gap to survive it. Do not
-substitute one for the other.
+The favicon version is a dedicated drawing on a 16px grid (rails 3px, gaps 1px,
+diagonal extent 4px). Every edge lands on an integer coordinate at the minimum
+size. Use it for browser and app icon contexts; use the master symbol for brand
+display at 24px and above.
 
 ## Prohibited use
 

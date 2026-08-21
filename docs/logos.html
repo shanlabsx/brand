@@ -9,65 +9,42 @@
   <link rel="icon" href="assets/symbol-coral.svg">
   <link rel="stylesheet" href="assets/colors.css">
   <link rel="stylesheet" href="styles.css">
-  <style>
-    .logo-section { display: grid; gap: 24px; margin-bottom: 80px; }
-    .logo-section-title { display: flex; align-items: baseline; gap: 14px; margin-bottom: 8px; }
-    .logo-section-number { font-family: ui-monospace; font-size: 11px; letter-spacing: 0.14em; color: var(--accent); font-weight: 700; text-transform: uppercase; }
-    .logo-section h2 { margin: 0; font-size: 24px; font-weight: 600; }
-    .logo-section-caption { font-size: 13px; color: var(--text-muted); }
-
-    .logo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
-    .logo-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; display: grid; gap: 12px; }
-    .logo-card.dark { background: var(--header-bg); border-color: var(--header-border); }
-    .logo-card img { display: block; width: 100%; height: auto; }
-    .logo-card-name { font-family: ui-monospace; font-size: 11px; color: var(--text-muted); }
-    .logo-card.dark .logo-card-name { color: var(--header-muted); }
-
-    .logo-showcase { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 32px 24px; display: grid; gap: 16px; }
-    .logo-showcase img { display: block; width: 100%; max-width: 400px; height: auto; }
-
-    .construction-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-    .construction-table th { text-align: left; padding: 12px 14px; font-family: ui-monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); font-weight: 700; border-bottom: 1px solid var(--border); }
-    .construction-table td { padding: 12px 14px; border-bottom: 1px solid var(--border); }
-    .construction-table tr:last-child td { border-bottom: none; }
-
-    .spec-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
-    .spec-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
-    .spec-item-value { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
-    .spec-item-label { font-size: 13px; color: var(--text-muted); }
-
-    .guideline-box { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
-    .guideline-box h3 { margin: 0 0 12px 0; font-size: 14px; font-weight: 600; }
-    .guideline-box ul { margin: 0; padding: 0 0 0 20px; }
-    .guideline-box li { margin-bottom: 8px; font-size: 13px; line-height: 1.6; }
-
-    .code-block { background: var(--header-bg); color: var(--header-text); border-radius: 10px; padding: 16px; font-family: ui-monospace; font-size: 12px; line-height: 1.6; overflow-x: auto; }
-  </style>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="site-header">
     <div class="site-header-inner">
       <a class="brand" href="./" aria-label="Shan Labs brand home">
-        <img src="assets/symbol-coral.svg" alt="" width="26" height="26">
-        <span>Shan Labs</span>
+        <img class="brand-logo" src="assets/logo-horizontal-white.svg" alt="" width="131" height="22">
       </a>
-      <nav class="site-nav">
+      <nav class="site-nav" aria-label="Primary navigation">
         <a href="./">Colors</a>
-        <a href="./logos.html">Logos</a>
-        <a href="https://github.com/shanlabsx/brand">GitHub <span aria-hidden="true">↗</span></a>
+        <a href="./logos.html" aria-current="page">Logos</a>
+        <a class="nav-github" href="https://github.com/shanlabsx/brand"><span class="nav-label">GitHub</span> <span aria-hidden="true">↗</span></a>
       </nav>
     </div>
   </header>
 
-  <main>
+  <main id="main-content">
     <section class="hero">
       <p class="hero-eyebrow">Brand system · v<span data-version>2.0.0</span></p>
       <h1>The Shan Labs logo system</h1>
       <p class="hero-lede">Symbols, wordmark, horizontal lockups, and usage guidelines for the Shan Labs brand. All assets available in SVG and PNG formats across multiple sizes.</p>
     </section>
 
+    <nav class="section-nav" aria-label="Logo documentation sections">
+      <a href="#lockups"><span>01</span>Lockups</a>
+      <a href="#marks"><span>02</span>Marks</a>
+      <a href="#exports"><span>03</span>Exports</a>
+      <a href="#construction"><span>04</span>Construction</a>
+      <a href="#usage"><span>05</span>Usage</a>
+      <a href="#files"><span>06</span>Files</a>
+    </nav>
+
+    <div class="logo-content">
+
     <!-- Horizontal Lockups -->
-    <div class="logo-section">
+    <section class="logo-section" id="lockups">
       <div class="logo-section-title">
         <span class="logo-section-number">01</span>
         <div>
@@ -77,17 +54,23 @@
       </div>
 
       <div class="logo-showcase">
-        <img src="../assets/logos/svg/logo-horizontal-primary.svg" alt="Primary logo on light background" style="height: 52px;">
+        <div class="logo-card-media logo-card-media--showcase">
+          <img class="logo-asset logo-asset--lockup" src="assets/logo-horizontal-primary.svg" alt="Primary Shan Labs horizontal logo">
+        </div>
         <p class="logo-card-name">logo-horizontal-primary.svg · light backgrounds</p>
       </div>
 
       <div class="logo-grid">
         <div class="logo-card dark">
-          <img src="../assets/logos/svg/logo-horizontal-white.svg" alt="White logo on dark background" style="height: 40px;">
+          <div class="logo-card-media">
+            <img class="logo-asset logo-asset--lockup" src="assets/logo-horizontal-white.svg" alt="White Shan Labs horizontal logo">
+          </div>
           <p class="logo-card-name">logo-horizontal-white.svg</p>
         </div>
         <div class="logo-card">
-          <img src="../assets/logos/svg/logo-horizontal-ink.svg" alt="Ink logo for monochrome" style="height: 40px;">
+          <div class="logo-card-media">
+            <img class="logo-asset logo-asset--lockup" src="assets/logo-horizontal-ink.svg" alt="Ink Shan Labs horizontal logo">
+          </div>
           <p class="logo-card-name">logo-horizontal-ink.svg · monochrome &amp; print</p>
         </div>
       </div>
@@ -106,66 +89,80 @@
           <div class="spec-item-label">Tight viewBox (SVG)</div>
         </div>
       </div>
-    </div>
+    </section>
 
     <!-- Symbols & Variants -->
-    <div class="logo-section">
+    <section class="logo-section" id="marks">
       <div class="logo-section-title">
         <span class="logo-section-number">02</span>
         <h2>Symbol and wordmark</h2>
       </div>
 
-      <div style="display: grid; gap: 20px;">
-        <div>
-          <h3 style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600;">Primary symbol variants</h3>
+      <div class="logo-groups">
+        <section class="logo-group">
+          <h3>Primary symbol variants</h3>
           <div class="logo-grid">
             <div class="logo-card">
-              <img src="../assets/logos/svg/symbol-coral.svg" alt="Coral symbol" width="80">
+              <div class="logo-card-media logo-card-media--mark">
+                <img class="logo-asset logo-asset--symbol" src="assets/symbol-coral.svg" alt="Coral Shan Labs symbol">
+              </div>
               <p class="logo-card-name">symbol-coral.svg</p>
             </div>
             <div class="logo-card dark">
-              <img src="../assets/logos/svg/symbol-white.svg" alt="White symbol" width="80">
+              <div class="logo-card-media logo-card-media--mark">
+                <img class="logo-asset logo-asset--symbol" src="assets/symbol-white.svg" alt="White Shan Labs symbol">
+              </div>
               <p class="logo-card-name">symbol-white.svg</p>
             </div>
             <div class="logo-card">
-              <img src="../assets/logos/svg/symbol-ink.svg" alt="Ink symbol" width="80">
+              <div class="logo-card-media logo-card-media--mark">
+                <img class="logo-asset logo-asset--symbol" src="assets/symbol-ink.svg" alt="Ink Shan Labs symbol">
+              </div>
               <p class="logo-card-name">symbol-ink.svg · monochrome</p>
             </div>
           </div>
-        </div>
+        </section>
 
-        <div>
-          <h3 style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600;">Wordmark variants</h3>
-          <div class="logo-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+        <section class="logo-group">
+          <h3>Wordmark variants</h3>
+          <div class="logo-grid logo-grid--wide">
             <div class="logo-card">
-              <img src="../assets/logos/svg/wordmark-ink.svg" alt="Ink wordmark" style="height: 36px;">
+              <div class="logo-card-media">
+                <img class="logo-asset logo-asset--wordmark" src="assets/wordmark-ink.svg" alt="Ink Shan Labs wordmark">
+              </div>
               <p class="logo-card-name">wordmark-ink.svg</p>
             </div>
             <div class="logo-card dark">
-              <img src="../assets/logos/svg/wordmark-white.svg" alt="White wordmark" style="height: 36px;">
+              <div class="logo-card-media">
+                <img class="logo-asset logo-asset--wordmark" src="assets/wordmark-white.svg" alt="White Shan Labs wordmark">
+              </div>
               <p class="logo-card-name">wordmark-white.svg</p>
             </div>
           </div>
-        </div>
+        </section>
 
-        <div>
-          <h3 style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600;">Avatar and icon</h3>
-          <div class="logo-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+        <section class="logo-group">
+          <h3>Avatar and icon</h3>
+          <div class="logo-grid logo-grid--wide">
             <div class="logo-card">
-              <img src="../assets/icons/avatar-dark.svg" alt="Avatar for circular crop" width="80" style="border-radius: 50%;">
+              <div class="logo-card-media logo-card-media--mark">
+                <img class="logo-asset logo-asset--avatar" src="assets/avatar-dark.svg" alt="Shan Labs avatar shown with a circular crop">
+              </div>
               <p class="logo-card-name">avatar-dark.svg · round crop</p>
             </div>
             <div class="logo-card">
-              <img src="../assets/icons/favicon.svg" alt="Favicon master" width="80">
+              <div class="logo-card-media logo-card-media--mark logo-card-media--checkerboard">
+                <img class="logo-asset logo-asset--favicon" src="assets/favicon.svg" alt="Shan Labs favicon master">
+              </div>
               <p class="logo-card-name">favicon.svg · 16px grid</p>
             </div>
           </div>
-        </div>
+        </section>
       </div>
-    </div>
+    </section>
 
     <!-- PNG Exports -->
-    <div class="logo-section">
+    <section class="logo-section" id="exports">
       <div class="logo-section-title">
         <span class="logo-section-number">03</span>
         <h2>Raster exports</h2>
@@ -195,16 +192,16 @@
           <div class="spec-item-label">Print minimum size</div>
         </div>
       </div>
-    </div>
+    </section>
 
     <!-- Construction Details -->
-    <div class="logo-section">
+    <section class="logo-section" id="construction">
       <div class="logo-section-title">
         <span class="logo-section-number">04</span>
         <h2>Construction and geometry</h2>
       </div>
 
-      <div class="guideline-box">
+      <div class="guideline-box table-scroll">
         <h3>32-unit grid structure</h3>
         <table class="construction-table">
           <thead>
@@ -252,7 +249,7 @@
       <div class="guideline-box">
         <h3>Clear space</h3>
         <ul>
-          <li><strong>Horizontal:</strong> 3u (96px at master scale, 6% of mark width)</li>
+          <li><strong>Horizontal:</strong> 3u (96px at master scale, 30% of mark width)</li>
           <li><strong>Vertical:</strong> 2u (64px at master scale)</li>
           <li>Non-square aspect ratio requires asymmetric padding to feel balanced</li>
         </ul>
@@ -261,23 +258,23 @@
       <div class="guideline-box">
         <h3>Favicon special case</h3>
         <ul>
-          <li>Separate 16px-grid drawing (1:32 of master, same 3:1:4 proportions)</li>
-          <li>Master symbol gap (1px) anti-aliases at 16px; favicon version widens to 2px</li>
-          <li>Use favicon.svg at 16px, 24px, 32px only — master symbol 24px and above</li>
+          <li>Dedicated 16px-grid drawing: rails 3px, gaps 1px, diagonal extent 4px</li>
+          <li>Every edge lands on the integer grid at the 16px minimum size</li>
+          <li>Use favicon.svg for browser and app icon contexts; use the master symbol for brand display at 24px and above</li>
         </ul>
       </div>
-    </div>
+    </section>
 
     <!-- Usage Guidelines -->
-    <div class="logo-section">
+    <section class="logo-section" id="usage">
       <div class="logo-section-title">
         <span class="logo-section-number">05</span>
         <h2>Usage guidelines</h2>
       </div>
 
-      <div style="display: grid; gap: 16px;">
-        <div class="guideline-box" style="border-color: var(--accent); border-width: 2px;">
-          <h3 style="color: var(--accent);">✓ Preferred use</h3>
+      <div class="guideline-grid">
+        <div class="guideline-box guideline-box--do">
+          <h3>✓ Preferred use</h3>
           <ul>
             <li>Ignition Coral symbol on Cloud White (light) background</li>
             <li>White symbol on Cosmic Ink (dark) background</li>
@@ -286,8 +283,8 @@
           </ul>
         </div>
 
-        <div class="guideline-box" style="border-color: var(--accent-deep); border-width: 2px;">
-          <h3 style="color: var(--accent-deep);">✗ Prohibited use</h3>
+        <div class="guideline-box guideline-box--dont">
+          <h3>✗ Prohibited use</h3>
           <ul>
             <li>Do not alter geometry, proportions, or internal spacing</li>
             <li>Do not rotate, skew, outline, crop, or stretch the mark</li>
@@ -313,10 +310,10 @@
           <div class="spec-item-label">#FFFFFF · reverse/dark bg</div>
         </div>
       </div>
-    </div>
+    </section>
 
     <!-- File Reference -->
-    <div class="logo-section">
+    <section class="logo-section" id="files">
       <div class="logo-section-title">
         <span class="logo-section-number">06</span>
         <h2>File reference</h2>
@@ -324,7 +321,7 @@
 
       <div class="guideline-box">
         <h3>SVG files (use by default)</h3>
-        <div class="code-block">assets/logos/svg/
+        <pre class="code-block"><code>assets/logos/svg/
 ├── symbol-coral.svg
 ├── symbol-ink.svg
 ├── symbol-white.svg
@@ -332,26 +329,27 @@
 ├── wordmark-white.svg
 ├── logo-horizontal-primary.svg
 ├── logo-horizontal-ink.svg
-└── logo-horizontal-white.svg</div>
+└── logo-horizontal-white.svg</code></pre>
       </div>
 
       <div class="guideline-box">
         <h3>PNG files (for systems that cannot consume SVG)</h3>
-        <div class="code-block">assets/logos/png/
+        <pre class="code-block"><code>assets/logos/png/
 ├── symbol-{coral,ink,white}-{128,256,512,1024}.png
 ├── logo-horizontal-{primary,ink,white}-{512,1024}.png
 
 assets/icons/
 ├── favicon-{16,32,48,180,192,512}.png
-└── avatar-dark-1024.png</div>
+└── avatar-dark-1024.png</code></pre>
       </div>
 
       <div class="guideline-box">
         <h3>Source files (for internal editing only)</h3>
-        <div class="code-block">source/logos/
+        <pre class="code-block"><code>source/logos/
 ├── symbol.svg (32-unit grid, 3 straight-line paths)
-└── wordmark.svg (vector outlines)</div>
+└── wordmark.svg (vector outlines)</code></pre>
       </div>
+    </section>
     </div>
   </main>
 
@@ -363,10 +361,5 @@ assets/icons/
   </footer>
 
   <script src="app.js"></script>
-  <script>
-    document.querySelectorAll('[data-version]').forEach(el => {
-      el.textContent = '2.0.0';
-    });
-  </script>
 </body>
 </html>

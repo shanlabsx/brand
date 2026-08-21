@@ -148,11 +148,14 @@ async function init() {
   if (!response.ok) throw new Error(`HTTP ${response.status}`);
   const palette = await response.json();
   for (const node of document.querySelectorAll('[data-version]')) node.textContent = palette.brand.version;
+  if (!paletteRoot) return;
   const fragment = document.createDocumentFragment();
   for (const section of palette.sections) fragment.appendChild(renderSection(section));
   paletteRoot.appendChild(fragment);
 }
 
 init().catch(() => {
-  paletteRoot.innerHTML = '<p class="palette-error">Could not load <code>palette.json</code>. Run <code>pnpm build:docs</code> and reload.</p>';
+  if (paletteRoot) {
+    paletteRoot.innerHTML = '<p class="palette-error">Could not load <code>palette.json</code>. Run <code>pnpm build:docs</code> and reload.</p>';
+  }
 });

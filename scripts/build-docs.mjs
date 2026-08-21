@@ -1,9 +1,22 @@
 import { copyFile, mkdir } from 'node:fs/promises';
-import { dirname, resolve } from 'node:path';
+import { basename, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { flattenTokens, readJson, resolveTokenValue, root, toKebabCase, write } from './lib.mjs';
 
 const isToken = (value) => value && typeof value === 'object' && '$value' in value;
+
+export const DOCS_BRAND_ASSETS = Object.freeze([
+  'assets/logos/svg/logo-horizontal-primary.svg',
+  'assets/logos/svg/logo-horizontal-ink.svg',
+  'assets/logos/svg/logo-horizontal-white.svg',
+  'assets/logos/svg/symbol-coral.svg',
+  'assets/logos/svg/symbol-ink.svg',
+  'assets/logos/svg/symbol-white.svg',
+  'assets/logos/svg/wordmark-ink.svg',
+  'assets/logos/svg/wordmark-white.svg',
+  'assets/icons/avatar-dark.svg',
+  'assets/icons/favicon.svg'
+]);
 
 const SECTIONS = {
   'brand-ignition': { title: 'Ignition', caption: 'Brand scale', featured: true },
@@ -91,10 +104,12 @@ if (isMain) {
   ]);
   const palette = generatePalette(document, config);
   const colorCount = palette.sections.reduce((total, section) => total + section.colors.length, 0);
-  const symbolTarget = resolve(root, 'docs/assets/symbol-coral.svg');
-  await mkdir(dirname(symbolTarget), { recursive: true });
-  await copyFile(resolve(root, 'assets/logos/svg/symbol-coral.svg'), symbolTarget);
-  await copyFile(resolve(root, 'tokens/dist/colors.css'), resolve(root, 'docs/assets/colors.css'));
+  const docsAssetDirectory = resolve(root, 'docs/assets');
+  await mkdir(docsAssetDirectory, { recursive: true });
+  await Promise.all([
+    ...DOCS_BRAND_ASSETS.map((source) => copyFile(resolve(root, source), resolve(docsAssetDirectory, basename(source)))),
+    copyFile(resolve(root, 'tokens/dist/colors.css'), resolve(docsAssetDirectory, 'colors.css'))
+  ]);
   await write('docs/palette.json', `${JSON.stringify(palette, null, 2)}\n`);
   console.log(`✓ Docs built: ${palette.sections.length} sections, ${colorCount} colors.`);
 }
