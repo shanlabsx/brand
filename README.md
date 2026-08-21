@@ -116,7 +116,7 @@ perceptual lightness until the target contrast ratio is met.
 3. Run `pnpm release <x.y.z>` — it bumps `brand.version` and `package.json` together, dates the changelog entry, runs `pnpm verify`, and commits and tags the release locally.
 4. Review the commit (`git show HEAD`), then publish with `git push && git push origin v<x.y.z>`.
 
-Pushing the tag triggers the release workflow, which validates the repository and publishes the versioned ZIP plus checksum to GitHub Releases.
+Pushing the tag triggers the release workflow, which validates the repository, publishes the versioned ZIP plus checksum to GitHub Releases, and deploys `docs/` to GitHub Pages. The workflow can also be dispatched manually to validate and redeploy the current branch without creating another GitHub Release.
 
 ## Ownership
 
