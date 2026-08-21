@@ -71,8 +71,8 @@ test('source symbol stays deterministic and self-contained', async () => {
   const svg = await readFile(`${root}/source/logos/symbol.svg`, 'utf8');
   assert.match(svg, /viewBox="0 0 512 512"/);
   assert.doesNotMatch(svg, /<text|<image|<script|href=|mask/);
-  assert.equal((svg.match(/fill="#FF4F70"/g) ?? []).length, 3);
-  assert.match(svg, /scale\(2\.031746031746032\)/);
+  assert.equal((svg.match(/fill="#FD4D6E"/g) ?? []).length, 3);
+  assert.doesNotMatch(svg, /scale\(2\.031746031746032\)/, 'v2.0.0 symbol is grid-constructed without scale transforms');
 });
 
 test('source wordmark spells Shan Labs with a distinct word space', async () => {
@@ -108,10 +108,10 @@ test('docs colors.css stays in sync with tokens/dist/colors.css', async () => {
 
 test('logo variants use token colors without editor cruft', async () => {
   const primary = await readFile(`${root}/assets/logos/svg/logo-horizontal-primary.svg`, 'utf8');
-  assert.match(primary, /#FF4F70/);
-  assert.match(primary, /#0B1020/);
+  assert.match(primary, /#FD4D6E/, 'v2.0.0 ignition.500 primary color');
+  assert.match(primary, /#0B1020/, 'ink color');
   const white = await readFile(`${root}/assets/logos/svg/logo-horizontal-white.svg`, 'utf8');
-  assert.doesNotMatch(white, /#FF4F70|#0B1020/);
+  assert.doesNotMatch(white, /#FD4D6E|#0B1020/, 'white variant replaces brand colors');
   for (const svg of [primary, white]) {
     const colors = svg.match(/#[0-9A-Fa-f]{6}/g) ?? [];
     assert.ok(colors.every((color) => color === color.toUpperCase()), 'colors must use token casing');
