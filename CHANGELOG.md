@@ -10,6 +10,8 @@ The project follows [Semantic Versioning](https://semver.org/):
 
 ## [Unreleased]
 
+## [2.0.0] - 2026-08-21
+
 ### Breaking changes
 
 - Rebuilt the symbol as three straight paths on a 32-unit grid and changed the horizontal lockup to a 1.30× symbol-to-cap-height ratio with a tightly bounded `0 0 983.97 165` viewBox.
