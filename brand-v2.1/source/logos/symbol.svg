@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
-  <title id="title">Shan Labs symbol — master</title>
-  <desc id="desc">Two horizontal rails linked by a 45° diagonal bar, constructed on a 32-unit grid.</desc>
-  <path fill="#FD4D6E" d="M96 64H416V160H96Z"></path>
-  <path fill="#FD4D6E" d="M96 192H288L416 320H224Z"></path>
-  <path fill="#FD4D6E" d="M96 352H416V448H96Z"></path>
-</svg>
