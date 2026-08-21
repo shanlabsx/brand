@@ -2,7 +2,7 @@
   "brand": {
     "name": "Shan Labs",
     "handle": "shanlabsx",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "status": "approved"
   },
   "sections": [
@@ -33,40 +33,69 @@
           ]
         },
         {
-          "name": "300",
-          "token": "color.brand.ignition.300",
-          "hex": "#FF91A7",
-          "cssVar": "--shan-color-brand-ignition-300",
-          "description": "Soft illustration accent; the dark-mode primary (WCAG AA text on Cosmic Ink).",
+          "name": "200",
+          "token": "color.brand.ignition.200",
+          "hex": "#FFC7CB",
+          "cssVar": "--shan-color-brand-ignition-200",
+          "description": "Branded border and divider.",
           "usedAs": [
             {
               "mode": "dark",
-              "label": "Primary"
-            },
-            {
-              "mode": "dark",
-              "label": "Focus"
+              "label": "Primary Hover"
             }
           ]
         },
         {
+          "name": "300",
+          "token": "color.brand.ignition.300",
+          "hex": "#FF91A7",
+          "cssVar": "--shan-color-brand-ignition-300",
+          "description": "Dark-mode primary; WCAG AA text on Cosmic Ink (8.89:1).",
+          "usedAs": [
+            {
+              "mode": "dark",
+              "label": "Primary"
+            },
+            {
+              "mode": "dark",
+              "label": "Focus Ring"
+            }
+          ]
+        },
+        {
+          "name": "400",
+          "token": "color.brand.ignition.400",
+          "hex": "#FF7B8C",
+          "cssVar": "--shan-color-brand-ignition-400",
+          "description": "Soft illustration accent."
+        },
+        {
           "name": "500",
           "token": "color.brand.ignition.500",
-          "hex": "#FF4F70",
+          "hex": "#FD4D6E",
           "cssVar": "--shan-color-brand-ignition-500",
-          "description": "Primary Shan Labs brand color.",
+          "description": "Primary Shan Labs brand color. 3.06:1 on Cloud White — clears the 3:1 non-text minimum.",
           "usedAs": [
             {
               "mode": "light",
               "label": "Primary"
             },
             {
-              "mode": "light",
-              "label": "Focus"
-            },
-            {
               "mode": "dark",
               "label": "Primary Action"
+            }
+          ]
+        },
+        {
+          "name": "600",
+          "token": "color.brand.ignition.600",
+          "hex": "#E3385D",
+          "cssVar": "--shan-color-brand-ignition-600",
+          "description": "Primary hover and pressed.",
+          "usedAs": [
+            {
+              "mode": "light",
+              "label": "Primary Hover"
             }
           ]
         },
@@ -75,20 +104,31 @@
           "token": "color.brand.ignition.700",
           "hex": "#C62F4E",
           "cssVar": "--shan-color-brand-ignition-700",
-          "description": "Accessible primary action with white text.",
+          "description": "Accessible primary action with white text (5.36:1).",
           "usedAs": [
             {
               "mode": "light",
               "label": "Primary Action"
+            },
+            {
+              "mode": "light",
+              "label": "Focus Ring"
             }
           ]
+        },
+        {
+          "name": "800",
+          "token": "color.brand.ignition.800",
+          "hex": "#A30036",
+          "cssVar": "--shan-color-brand-ignition-800",
+          "description": "Deep brand emphasis."
         },
         {
           "name": "900",
           "token": "color.brand.ignition.900",
           "hex": "#6E1329",
           "cssVar": "--shan-color-brand-ignition-900",
-          "description": "Deep brand emphasis; the dark-mode subtle fill.",
+          "description": "Dark-mode subtle brand fill.",
           "usedAs": [
             {
               "mode": "dark",
@@ -99,126 +139,16 @@
       ]
     },
     {
-      "id": "foundation",
-      "title": "Foundation",
-      "caption": "Neutrals and surfaces, light and dark",
+      "id": "neutral",
+      "title": "Neutral",
+      "caption": "Brand colors",
       "featured": false,
       "colors": [
         {
-          "name": "Ink",
-          "token": "color.foundation.ink",
-          "hex": "#0B1020",
-          "cssVar": "--shan-color-foundation-ink",
-          "description": "Primary text and dark surface.",
-          "usedAs": [
-            {
-              "mode": "light",
-              "label": "Foreground"
-            },
-            {
-              "mode": "light",
-              "label": "Toast Background"
-            },
-            {
-              "mode": "dark",
-              "label": "Background"
-            },
-            {
-              "mode": "dark",
-              "label": "Toast Foreground"
-            }
-          ]
-        },
-        {
-          "name": "Ink Surface",
-          "token": "color.foundation.inkSurface",
-          "hex": "#191E30",
-          "cssVar": "--shan-color-foundation-ink-surface",
-          "description": "Elevated dark-mode surface, one step above Cosmic Ink.",
-          "usedAs": [
-            {
-              "mode": "dark",
-              "label": "Surface"
-            }
-          ]
-        },
-        {
-          "name": "Ink Border",
-          "token": "color.foundation.inkBorder",
-          "hex": "#2C3245",
-          "cssVar": "--shan-color-foundation-ink-border",
-          "description": "Dark-mode dividers and borders.",
-          "usedAs": [
-            {
-              "mode": "dark",
-              "label": "Border"
-            }
-          ]
-        },
-        {
-          "name": "On Ink Muted",
-          "token": "color.foundation.onInkMuted",
-          "hex": "#7B869C",
-          "cssVar": "--shan-color-foundation-on-ink-muted",
-          "description": "Secondary text on Cosmic Ink or Ink Surface; WCAG AA verified against both (5.17:1 and 4.51:1).",
-          "usedAs": [
-            {
-              "mode": "dark",
-              "label": "Foreground Muted"
-            }
-          ]
-        },
-        {
-          "name": "Slate",
-          "token": "color.foundation.slate",
-          "hex": "#4E586D",
-          "cssVar": "--shan-color-foundation-slate",
-          "description": "Secondary text.",
-          "usedAs": [
-            {
-              "mode": "light",
-              "label": "Foreground Muted"
-            }
-          ]
-        },
-        {
-          "name": "Mist",
-          "token": "color.foundation.mist",
-          "hex": "#E5E8EE",
-          "cssVar": "--shan-color-foundation-mist",
-          "description": "Borders and separators.",
-          "usedAs": [
-            {
-              "mode": "light",
-              "label": "Border"
-            }
-          ]
-        },
-        {
-          "name": "Cloud",
-          "token": "color.foundation.cloud",
-          "hex": "#F7F8FA",
-          "cssVar": "--shan-color-foundation-cloud",
-          "description": "Default light surface.",
-          "usedAs": [
-            {
-              "mode": "light",
-              "label": "Background"
-            }
-          ]
-        },
-        {
-          "name": "Moon",
-          "token": "color.foundation.moon",
-          "hex": "#F3F0EB",
-          "cssVar": "--shan-color-foundation-moon",
-          "description": "Warm editorial surface."
-        },
-        {
-          "name": "White",
-          "token": "color.foundation.white",
+          "name": "0",
+          "token": "color.neutral.0",
           "hex": "#FFFFFF",
-          "cssVar": "--shan-color-foundation-white",
+          "cssVar": "--shan-color-neutral-0",
           "description": "Pure reversed foreground.",
           "usedAs": [
             {
@@ -238,6 +168,280 @@
               "label": "Toast Background"
             }
           ]
+        },
+        {
+          "name": "50",
+          "token": "color.neutral.50",
+          "hex": "#F7F8FA",
+          "cssVar": "--shan-color-neutral-50",
+          "description": "Default light surface (Cloud White).",
+          "usedAs": [
+            {
+              "mode": "light",
+              "label": "Background"
+            }
+          ]
+        },
+        {
+          "name": "100",
+          "token": "color.neutral.100",
+          "hex": "#F0F2F6",
+          "cssVar": "--shan-color-neutral-100",
+          "description": "Light-surface hover and sunken fills.",
+          "usedAs": [
+            {
+              "mode": "light",
+              "label": "Surface Hover"
+            },
+            {
+              "mode": "light",
+              "label": "Surface Sunken"
+            }
+          ]
+        },
+        {
+          "name": "200",
+          "token": "color.neutral.200",
+          "hex": "#E5E8EE",
+          "cssVar": "--shan-color-neutral-200",
+          "description": "Subtle borders and separators (Mist).",
+          "usedAs": [
+            {
+              "mode": "light",
+              "label": "Border Subtle"
+            }
+          ]
+        },
+        {
+          "name": "300",
+          "token": "color.neutral.300",
+          "hex": "#D3D8E1",
+          "cssVar": "--shan-color-neutral-300",
+          "description": "Default border for inputs, tables, and cards.",
+          "usedAs": [
+            {
+              "mode": "light",
+              "label": "Border"
+            }
+          ]
+        },
+        {
+          "name": "400",
+          "token": "color.neutral.400",
+          "hex": "#A9B1C2",
+          "cssVar": "--shan-color-neutral-400",
+          "description": "Strong border; disabled foreground.",
+          "usedAs": [
+            {
+              "mode": "light",
+              "label": "Foreground Disabled"
+            },
+            {
+              "mode": "light",
+              "label": "Border Strong"
+            }
+          ]
+        },
+        {
+          "name": "500",
+          "token": "color.neutral.500",
+          "hex": "#7B869C",
+          "cssVar": "--shan-color-neutral-500",
+          "description": "Secondary text on Cosmic Ink or Ink Surface (5.17:1 / 4.51:1).",
+          "usedAs": [
+            {
+              "mode": "dark",
+              "label": "Foreground Muted"
+            }
+          ]
+        },
+        {
+          "name": "600",
+          "token": "color.neutral.600",
+          "hex": "#5E697F",
+          "cssVar": "--shan-color-neutral-600",
+          "description": "Subtle foreground on light surfaces (5.20:1 on Cloud White).",
+          "usedAs": [
+            {
+              "mode": "light",
+              "label": "Foreground Subtle"
+            },
+            {
+              "mode": "dark",
+              "label": "Foreground Subtle"
+            },
+            {
+              "mode": "dark",
+              "label": "Foreground Disabled"
+            }
+          ]
+        },
+        {
+          "name": "700",
+          "token": "color.neutral.700",
+          "hex": "#4E586D",
+          "cssVar": "--shan-color-neutral-700",
+          "description": "Secondary text on light surfaces (Slate, 6.72:1).",
+          "usedAs": [
+            {
+              "mode": "light",
+              "label": "Foreground Muted"
+            },
+            {
+              "mode": "dark",
+              "label": "Border Strong"
+            }
+          ]
+        },
+        {
+          "name": "800",
+          "token": "color.neutral.800",
+          "hex": "#2C3245",
+          "cssVar": "--shan-color-neutral-800",
+          "description": "Dark-mode dividers and borders (Ink Border).",
+          "usedAs": [
+            {
+              "mode": "dark",
+              "label": "Surface Hover"
+            },
+            {
+              "mode": "dark",
+              "label": "Border"
+            }
+          ]
+        },
+        {
+          "name": "900",
+          "token": "color.neutral.900",
+          "hex": "#191E30",
+          "cssVar": "--shan-color-neutral-900",
+          "description": "Elevated dark-mode surface (Ink Surface).",
+          "usedAs": [
+            {
+              "mode": "dark",
+              "label": "Surface"
+            },
+            {
+              "mode": "dark",
+              "label": "Border Subtle"
+            }
+          ]
+        },
+        {
+          "name": "950",
+          "token": "color.neutral.950",
+          "hex": "#0B1020",
+          "cssVar": "--shan-color-neutral-950",
+          "description": "Primary text and dark surface (Cosmic Ink).",
+          "usedAs": [
+            {
+              "mode": "light",
+              "label": "Foreground"
+            },
+            {
+              "mode": "light",
+              "label": "On Primary"
+            },
+            {
+              "mode": "light",
+              "label": "Toast Background"
+            },
+            {
+              "mode": "dark",
+              "label": "Background"
+            },
+            {
+              "mode": "dark",
+              "label": "Surface Sunken"
+            },
+            {
+              "mode": "dark",
+              "label": "On Primary"
+            },
+            {
+              "mode": "dark",
+              "label": "Toast Foreground"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "foundation",
+      "title": "Foundation",
+      "caption": "Neutrals and surfaces, light and dark",
+      "featured": false,
+      "colors": [
+        {
+          "name": "Ink",
+          "token": "color.foundation.ink",
+          "hex": "#0B1020",
+          "cssVar": "--shan-color-foundation-ink",
+          "reference": "color.neutral.950",
+          "description": "Alias kept for compatibility — resolves to #0B1020."
+        },
+        {
+          "name": "Ink Surface",
+          "token": "color.foundation.inkSurface",
+          "hex": "#191E30",
+          "cssVar": "--shan-color-foundation-ink-surface",
+          "reference": "color.neutral.900",
+          "description": "Alias kept for compatibility — resolves to #191E30."
+        },
+        {
+          "name": "Ink Border",
+          "token": "color.foundation.inkBorder",
+          "hex": "#2C3245",
+          "cssVar": "--shan-color-foundation-ink-border",
+          "reference": "color.neutral.800",
+          "description": "Alias kept for compatibility — resolves to #2C3245."
+        },
+        {
+          "name": "On Ink Muted",
+          "token": "color.foundation.onInkMuted",
+          "hex": "#7B869C",
+          "cssVar": "--shan-color-foundation-on-ink-muted",
+          "reference": "color.neutral.500",
+          "description": "Alias kept for compatibility — resolves to #7B869C."
+        },
+        {
+          "name": "Slate",
+          "token": "color.foundation.slate",
+          "hex": "#4E586D",
+          "cssVar": "--shan-color-foundation-slate",
+          "reference": "color.neutral.700",
+          "description": "Alias kept for compatibility — resolves to #4E586D."
+        },
+        {
+          "name": "Mist",
+          "token": "color.foundation.mist",
+          "hex": "#E5E8EE",
+          "cssVar": "--shan-color-foundation-mist",
+          "reference": "color.neutral.200",
+          "description": "Alias kept for compatibility — resolves to #E5E8EE."
+        },
+        {
+          "name": "Cloud",
+          "token": "color.foundation.cloud",
+          "hex": "#F7F8FA",
+          "cssVar": "--shan-color-foundation-cloud",
+          "reference": "color.neutral.50",
+          "description": "Alias kept for compatibility — resolves to #F7F8FA."
+        },
+        {
+          "name": "White",
+          "token": "color.foundation.white",
+          "hex": "#FFFFFF",
+          "cssVar": "--shan-color-foundation-white",
+          "reference": "color.neutral.0",
+          "description": "Alias kept for compatibility — resolves to #FFFFFF."
+        },
+        {
+          "name": "Moon",
+          "token": "color.foundation.moon",
+          "hex": "#F3F0EB",
+          "cssVar": "--shan-color-foundation-moon",
+          "description": "Warm editorial surface. Marketing only — it is H 81 warm against a H 265 cool neutral ramp."
         }
       ]
     },
@@ -252,7 +456,7 @@
           "token": "color.accent.aurora.100",
           "hex": "#E8E9FF",
           "cssVar": "--shan-color-accent-aurora-100",
-          "description": "Aurora subtle surface tint.",
+          "description": "Subtle surface tint.",
           "usedAs": [
             {
               "mode": "light",
@@ -265,7 +469,7 @@
           "token": "color.accent.aurora.300",
           "hex": "#AEADFF",
           "cssVar": "--shan-color-accent-aurora-300",
-          "description": "Aurora accent for dark surfaces; WCAG AA text on Cosmic Ink (9.21:1).",
+          "description": "Dark-surface text and icons (9.21:1 on Cosmic Ink).",
           "usedAs": [
             {
               "mode": "dark",
@@ -278,18 +482,29 @@
           "token": "color.accent.aurora.500",
           "hex": "#765CFF",
           "cssVar": "--shan-color-accent-aurora-500",
-          "description": "AI and experimental product features."
+          "description": "Brand anchor — fills, gradients, marketing."
+        },
+        {
+          "name": "600",
+          "token": "color.accent.aurora.600",
+          "hex": "#6A50EA",
+          "cssVar": "--shan-color-accent-aurora-600",
+          "description": "Icons and borders on light surfaces."
         },
         {
           "name": "700",
           "token": "color.accent.aurora.700",
-          "hex": "#7054F7",
+          "hex": "#573FC7",
           "cssVar": "--shan-color-accent-aurora-700",
-          "description": "Accessible Aurora text and icons on light surfaces (WCAG AA, 4.60:1 on Cloud White).",
+          "description": "Light-surface text and icons (6.72:1 on Cloud White).",
           "usedAs": [
             {
               "mode": "light",
               "label": "Intelligence"
+            },
+            {
+              "mode": "dark",
+              "label": "Intelligence Subtle"
             }
           ]
         }
@@ -306,7 +521,7 @@
           "token": "color.accent.fern.100",
           "hex": "#E1EFE8",
           "cssVar": "--shan-color-accent-fern-100",
-          "description": "Fern subtle surface tint.",
+          "description": "Subtle surface tint.",
           "usedAs": [
             {
               "mode": "light",
@@ -319,7 +534,7 @@
           "token": "color.accent.fern.300",
           "hex": "#87C7AB",
           "cssVar": "--shan-color-accent-fern-300",
-          "description": "Fern accent for dark surfaces; WCAG AA text on Cosmic Ink (9.73:1).",
+          "description": "Dark-surface text and icons (9.73:1 on Cosmic Ink).",
           "usedAs": [
             {
               "mode": "dark",
@@ -330,20 +545,31 @@
         {
           "name": "500",
           "token": "color.accent.fern.500",
-          "hex": "#2FA67D",
+          "hex": "#00A97A",
           "cssVar": "--shan-color-accent-fern-500",
-          "description": "Success, growth, and New Zealand context."
+          "description": "Brand anchor — clears 3:1 on white for icons and borders."
+        },
+        {
+          "name": "600",
+          "token": "color.accent.fern.600",
+          "hex": "#008A63",
+          "cssVar": "--shan-color-accent-fern-600",
+          "description": "Icons and borders on light surfaces."
         },
         {
           "name": "700",
           "token": "color.accent.fern.700",
           "hex": "#00815D",
           "cssVar": "--shan-color-accent-fern-700",
-          "description": "Accessible Fern text and icons on light surfaces (WCAG AA, 4.60:1 on Cloud White).",
+          "description": "Light-surface text and icons (4.60:1 on Cloud White).",
           "usedAs": [
             {
               "mode": "light",
               "label": "Success"
+            },
+            {
+              "mode": "dark",
+              "label": "Success Subtle"
             }
           ]
         }
@@ -360,7 +586,7 @@
           "token": "color.accent.solar.100",
           "hex": "#F3EADB",
           "cssVar": "--shan-color-accent-solar-100",
-          "description": "Solar subtle surface tint.",
+          "description": "Subtle surface tint.",
           "usedAs": [
             {
               "mode": "light",
@@ -371,9 +597,9 @@
         {
           "name": "300",
           "token": "color.accent.solar.300",
-          "hex": "#D6B170",
+          "hex": "#F4D297",
           "cssVar": "--shan-color-accent-solar-300",
-          "description": "Solar accent for dark surfaces; WCAG AA text on Cosmic Ink (9.36:1).",
+          "description": "Dark-surface text and icons (13.08:1 on Cosmic Ink).",
           "usedAs": [
             {
               "mode": "dark",
@@ -382,24 +608,268 @@
           ]
         },
         {
+          "name": "400",
+          "token": "color.accent.solar.400",
+          "hex": "#F4C46C",
+          "cssVar": "--shan-color-accent-solar-400",
+          "description": "Illustration accent."
+        },
+        {
           "name": "500",
           "token": "color.accent.solar.500",
           "hex": "#F5B942",
           "cssVar": "--shan-color-accent-solar-500",
-          "description": "Achievement, warning, and creative energy. Decorative use only — below 3:1 non-text contrast on light surfaces, use solar.700 for icons, text, or borders."
+          "description": "Brand anchor — decorative fills only."
+        },
+        {
+          "name": "600",
+          "token": "color.accent.solar.600",
+          "hex": "#AD7C00",
+          "cssVar": "--shan-color-accent-solar-600",
+          "description": "Icons and borders on light surfaces."
         },
         {
           "name": "700",
           "token": "color.accent.solar.700",
           "hex": "#946900",
           "cssVar": "--shan-color-accent-solar-700",
-          "description": "Accessible Solar text and icons on light surfaces (WCAG AA, 4.62:1 on Cloud White).",
+          "description": "Light-surface text and icons (4.62:1 on Cloud White).",
           "usedAs": [
             {
               "mode": "light",
               "label": "Warning"
+            },
+            {
+              "mode": "dark",
+              "label": "Warning Subtle"
             }
           ]
+        }
+      ]
+    },
+    {
+      "id": "accent-danger",
+      "title": "Danger",
+      "caption": "Brand colors",
+      "featured": false,
+      "colors": [
+        {
+          "name": "100",
+          "token": "color.accent.danger.100",
+          "hex": "#FFE4DF",
+          "cssVar": "--shan-color-accent-danger-100",
+          "description": "Error surface tint.",
+          "usedAs": [
+            {
+              "mode": "light",
+              "label": "Danger Subtle"
+            }
+          ]
+        },
+        {
+          "name": "300",
+          "token": "color.accent.danger.300",
+          "hex": "#FFA18F",
+          "cssVar": "--shan-color-accent-danger-300",
+          "description": "Dark-surface error text (9.69:1 on Cosmic Ink).",
+          "usedAs": [
+            {
+              "mode": "dark",
+              "label": "Danger"
+            }
+          ]
+        },
+        {
+          "name": "500",
+          "token": "color.accent.danger.500",
+          "hex": "#DB3012",
+          "cssVar": "--shan-color-accent-danger-500",
+          "description": "Destructive fill with white text (4.73:1).",
+          "usedAs": [
+            {
+              "mode": "light",
+              "label": "Danger Fill"
+            },
+            {
+              "mode": "dark",
+              "label": "Danger Fill"
+            }
+          ]
+        },
+        {
+          "name": "700",
+          "token": "color.accent.danger.700",
+          "hex": "#C02000",
+          "cssVar": "--shan-color-accent-danger-700",
+          "description": "Light-surface error text and icons (5.73:1 on Cloud White).",
+          "usedAs": [
+            {
+              "mode": "light",
+              "label": "Danger"
+            },
+            {
+              "mode": "dark",
+              "label": "Danger Subtle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "accent-info",
+      "title": "Info",
+      "caption": "Brand colors",
+      "featured": false,
+      "colors": [
+        {
+          "name": "100",
+          "token": "color.accent.info.100",
+          "hex": "#D6EFFF",
+          "cssVar": "--shan-color-accent-info-100",
+          "description": "Info surface tint.",
+          "usedAs": [
+            {
+              "mode": "light",
+              "label": "Info Subtle"
+            }
+          ]
+        },
+        {
+          "name": "300",
+          "token": "color.accent.info.300",
+          "hex": "#7AC8F5",
+          "cssVar": "--shan-color-accent-info-300",
+          "description": "Dark-surface info text (10.28:1 on Cosmic Ink).",
+          "usedAs": [
+            {
+              "mode": "dark",
+              "label": "Info"
+            }
+          ]
+        },
+        {
+          "name": "500",
+          "token": "color.accent.info.500",
+          "hex": "#008BC1",
+          "cssVar": "--shan-color-accent-info-500",
+          "description": "Info fill and illustration."
+        },
+        {
+          "name": "700",
+          "token": "color.accent.info.700",
+          "hex": "#00729F",
+          "cssVar": "--shan-color-accent-info-700",
+          "description": "Light-surface info text and icons (5.06:1 on Cloud White).",
+          "usedAs": [
+            {
+              "mode": "light",
+              "label": "Info"
+            },
+            {
+              "mode": "dark",
+              "label": "Info Subtle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dataviz-light",
+      "title": "Light",
+      "caption": "Brand colors",
+      "featured": false,
+      "colors": [
+        {
+          "name": "1",
+          "token": "color.dataviz.light.1",
+          "hex": "#CA606D",
+          "cssVar": "--shan-color-dataviz-light-1",
+          "description": "Categorical series — constant OKLCH L 62 / C 0.135."
+        },
+        {
+          "name": "2",
+          "token": "color.dataviz.light.2",
+          "hex": "#BD7212",
+          "cssVar": "--shan-color-dataviz-light-2",
+          "description": "Categorical series — constant OKLCH L 62 / C 0.135."
+        },
+        {
+          "name": "3",
+          "token": "color.dataviz.light.3",
+          "hex": "#74942B",
+          "cssVar": "--shan-color-dataviz-light-3",
+          "description": "Categorical series — constant OKLCH L 62 / C 0.135."
+        },
+        {
+          "name": "4",
+          "token": "color.dataviz.light.4",
+          "hex": "#009A94",
+          "cssVar": "--shan-color-dataviz-light-4",
+          "description": "Categorical series — constant OKLCH L 62 / C 0.135."
+        },
+        {
+          "name": "5",
+          "token": "color.dataviz.light.5",
+          "hex": "#3D8AD4",
+          "cssVar": "--shan-color-dataviz-light-5",
+          "description": "Categorical series — constant OKLCH L 62 / C 0.135."
+        },
+        {
+          "name": "6",
+          "token": "color.dataviz.light.6",
+          "hex": "#9F6DC2",
+          "cssVar": "--shan-color-dataviz-light-6",
+          "description": "Categorical series — constant OKLCH L 62 / C 0.135."
+        }
+      ]
+    },
+    {
+      "id": "dataviz-dark",
+      "title": "Dark",
+      "caption": "Brand colors",
+      "featured": false,
+      "colors": [
+        {
+          "name": "1",
+          "token": "color.dataviz.dark.1",
+          "hex": "#EA8C95",
+          "cssVar": "--shan-color-dataviz-dark-1",
+          "description": "Categorical series on Cosmic Ink — constant OKLCH L 74 / C 0.115."
+        },
+        {
+          "name": "2",
+          "token": "color.dataviz.dark.2",
+          "hex": "#DD9B59",
+          "cssVar": "--shan-color-dataviz-dark-2",
+          "description": "Categorical series on Cosmic Ink — constant OKLCH L 74 / C 0.115."
+        },
+        {
+          "name": "3",
+          "token": "color.dataviz.dark.3",
+          "hex": "#9AB864",
+          "cssVar": "--shan-color-dataviz-dark-3",
+          "description": "Categorical series on Cosmic Ink — constant OKLCH L 74 / C 0.115."
+        },
+        {
+          "name": "4",
+          "token": "color.dataviz.dark.4",
+          "hex": "#37C2BB",
+          "cssVar": "--shan-color-dataviz-dark-4",
+          "description": "Categorical series on Cosmic Ink — constant OKLCH L 74 / C 0.115."
+        },
+        {
+          "name": "5",
+          "token": "color.dataviz.dark.5",
+          "hex": "#70B0F1",
+          "cssVar": "--shan-color-dataviz-dark-5",
+          "description": "Categorical series on Cosmic Ink — constant OKLCH L 74 / C 0.115."
+        },
+        {
+          "name": "6",
+          "token": "color.dataviz.dark.6",
+          "hex": "#C196E1",
+          "cssVar": "--shan-color-dataviz-dark-6",
+          "description": "Categorical series on Cosmic Ink — constant OKLCH L 74 / C 0.115."
         }
       ]
     },
@@ -414,42 +884,91 @@
           "token": "color.semantic.light.background",
           "hex": "#F7F8FA",
           "cssVar": "--shan-color-semantic-light-background",
-          "reference": "color.foundation.cloud"
+          "reference": "color.neutral.50"
         },
         {
           "name": "Surface",
           "token": "color.semantic.light.surface",
           "hex": "#FFFFFF",
           "cssVar": "--shan-color-semantic-light-surface",
-          "reference": "color.foundation.white"
+          "reference": "color.neutral.0"
+        },
+        {
+          "name": "Surface Hover",
+          "token": "color.semantic.light.surfaceHover",
+          "hex": "#F0F2F6",
+          "cssVar": "--shan-color-semantic-light-surface-hover",
+          "reference": "color.neutral.100"
+        },
+        {
+          "name": "Surface Sunken",
+          "token": "color.semantic.light.surfaceSunken",
+          "hex": "#F0F2F6",
+          "cssVar": "--shan-color-semantic-light-surface-sunken",
+          "reference": "color.neutral.100"
         },
         {
           "name": "Foreground",
           "token": "color.semantic.light.foreground",
           "hex": "#0B1020",
           "cssVar": "--shan-color-semantic-light-foreground",
-          "reference": "color.foundation.ink"
+          "reference": "color.neutral.950"
         },
         {
           "name": "Foreground Muted",
           "token": "color.semantic.light.foregroundMuted",
           "hex": "#4E586D",
           "cssVar": "--shan-color-semantic-light-foreground-muted",
-          "reference": "color.foundation.slate"
+          "reference": "color.neutral.700"
+        },
+        {
+          "name": "Foreground Subtle",
+          "token": "color.semantic.light.foregroundSubtle",
+          "hex": "#5E697F",
+          "cssVar": "--shan-color-semantic-light-foreground-subtle",
+          "reference": "color.neutral.600"
+        },
+        {
+          "name": "Foreground Disabled",
+          "token": "color.semantic.light.foregroundDisabled",
+          "hex": "#A9B1C2",
+          "cssVar": "--shan-color-semantic-light-foreground-disabled",
+          "reference": "color.neutral.400"
+        },
+        {
+          "name": "Border Subtle",
+          "token": "color.semantic.light.borderSubtle",
+          "hex": "#E5E8EE",
+          "cssVar": "--shan-color-semantic-light-border-subtle",
+          "reference": "color.neutral.200"
         },
         {
           "name": "Border",
           "token": "color.semantic.light.border",
-          "hex": "#E5E8EE",
+          "hex": "#D3D8E1",
           "cssVar": "--shan-color-semantic-light-border",
-          "reference": "color.foundation.mist"
+          "reference": "color.neutral.300"
+        },
+        {
+          "name": "Border Strong",
+          "token": "color.semantic.light.borderStrong",
+          "hex": "#A9B1C2",
+          "cssVar": "--shan-color-semantic-light-border-strong",
+          "reference": "color.neutral.400"
         },
         {
           "name": "Primary",
           "token": "color.semantic.light.primary",
-          "hex": "#FF4F70",
+          "hex": "#FD4D6E",
           "cssVar": "--shan-color-semantic-light-primary",
           "reference": "color.brand.ignition.500"
+        },
+        {
+          "name": "Primary Hover",
+          "token": "color.semantic.light.primaryHover",
+          "hex": "#E3385D",
+          "cssVar": "--shan-color-semantic-light-primary-hover",
+          "reference": "color.brand.ignition.600"
         },
         {
           "name": "Primary Action",
@@ -466,12 +985,25 @@
           "reference": "color.brand.ignition.100"
         },
         {
+          "name": "On Primary",
+          "token": "color.semantic.light.onPrimary",
+          "hex": "#0B1020",
+          "cssVar": "--shan-color-semantic-light-on-primary",
+          "reference": "color.neutral.950"
+        },
+        {
+          "name": "Focus Ring",
+          "token": "color.semantic.light.focusRing",
+          "hex": "#C62F4E",
+          "cssVar": "--shan-color-semantic-light-focus-ring",
+          "reference": "color.brand.ignition.700"
+        },
+        {
           "name": "Success",
           "token": "color.semantic.light.success",
           "hex": "#00815D",
           "cssVar": "--shan-color-semantic-light-success",
-          "reference": "color.accent.fern.700",
-          "description": "Text, icons, and borders — WCAG AA verified. Pair with successSubtle for fills."
+          "reference": "color.accent.fern.700"
         },
         {
           "name": "Success Subtle",
@@ -485,8 +1017,7 @@
           "token": "color.semantic.light.warning",
           "hex": "#946900",
           "cssVar": "--shan-color-semantic-light-warning",
-          "reference": "color.accent.solar.700",
-          "description": "Text, icons, and borders — WCAG AA verified. Pair with warningSubtle for fills."
+          "reference": "color.accent.solar.700"
         },
         {
           "name": "Warning Subtle",
@@ -496,12 +1027,46 @@
           "reference": "color.accent.solar.100"
         },
         {
+          "name": "Danger",
+          "token": "color.semantic.light.danger",
+          "hex": "#C02000",
+          "cssVar": "--shan-color-semantic-light-danger",
+          "reference": "color.accent.danger.700"
+        },
+        {
+          "name": "Danger Fill",
+          "token": "color.semantic.light.dangerFill",
+          "hex": "#DB3012",
+          "cssVar": "--shan-color-semantic-light-danger-fill",
+          "reference": "color.accent.danger.500"
+        },
+        {
+          "name": "Danger Subtle",
+          "token": "color.semantic.light.dangerSubtle",
+          "hex": "#FFE4DF",
+          "cssVar": "--shan-color-semantic-light-danger-subtle",
+          "reference": "color.accent.danger.100"
+        },
+        {
+          "name": "Info",
+          "token": "color.semantic.light.info",
+          "hex": "#00729F",
+          "cssVar": "--shan-color-semantic-light-info",
+          "reference": "color.accent.info.700"
+        },
+        {
+          "name": "Info Subtle",
+          "token": "color.semantic.light.infoSubtle",
+          "hex": "#D6EFFF",
+          "cssVar": "--shan-color-semantic-light-info-subtle",
+          "reference": "color.accent.info.100"
+        },
+        {
           "name": "Intelligence",
           "token": "color.semantic.light.intelligence",
-          "hex": "#7054F7",
+          "hex": "#573FC7",
           "cssVar": "--shan-color-semantic-light-intelligence",
-          "reference": "color.accent.aurora.700",
-          "description": "Text, icons, and borders — WCAG AA verified. Pair with intelligenceSubtle for fills."
+          "reference": "color.accent.aurora.700"
         },
         {
           "name": "Intelligence Subtle",
@@ -511,25 +1076,18 @@
           "reference": "color.accent.aurora.100"
         },
         {
-          "name": "Focus",
-          "token": "color.semantic.light.focus",
-          "hex": "#FF4F70",
-          "cssVar": "--shan-color-semantic-light-focus",
-          "reference": "color.brand.ignition.500"
-        },
-        {
           "name": "Toast Background",
           "token": "color.semantic.light.toastBackground",
           "hex": "#0B1020",
           "cssVar": "--shan-color-semantic-light-toast-background",
-          "reference": "color.foundation.ink"
+          "reference": "color.neutral.950"
         },
         {
           "name": "Toast Foreground",
           "token": "color.semantic.light.toastForeground",
           "hex": "#FFFFFF",
           "cssVar": "--shan-color-semantic-light-toast-foreground",
-          "reference": "color.foundation.white"
+          "reference": "color.neutral.0"
         }
       ]
     },
@@ -544,35 +1102,77 @@
           "token": "color.semantic.dark.background",
           "hex": "#0B1020",
           "cssVar": "--shan-color-semantic-dark-background",
-          "reference": "color.foundation.ink"
+          "reference": "color.neutral.950"
         },
         {
           "name": "Surface",
           "token": "color.semantic.dark.surface",
           "hex": "#191E30",
           "cssVar": "--shan-color-semantic-dark-surface",
-          "reference": "color.foundation.inkSurface"
+          "reference": "color.neutral.900"
+        },
+        {
+          "name": "Surface Hover",
+          "token": "color.semantic.dark.surfaceHover",
+          "hex": "#2C3245",
+          "cssVar": "--shan-color-semantic-dark-surface-hover",
+          "reference": "color.neutral.800"
+        },
+        {
+          "name": "Surface Sunken",
+          "token": "color.semantic.dark.surfaceSunken",
+          "hex": "#0B1020",
+          "cssVar": "--shan-color-semantic-dark-surface-sunken",
+          "reference": "color.neutral.950"
         },
         {
           "name": "Foreground",
           "token": "color.semantic.dark.foreground",
           "hex": "#FFFFFF",
           "cssVar": "--shan-color-semantic-dark-foreground",
-          "reference": "color.foundation.white"
+          "reference": "color.neutral.0"
         },
         {
           "name": "Foreground Muted",
           "token": "color.semantic.dark.foregroundMuted",
           "hex": "#7B869C",
           "cssVar": "--shan-color-semantic-dark-foreground-muted",
-          "reference": "color.foundation.onInkMuted"
+          "reference": "color.neutral.500"
+        },
+        {
+          "name": "Foreground Subtle",
+          "token": "color.semantic.dark.foregroundSubtle",
+          "hex": "#5E697F",
+          "cssVar": "--shan-color-semantic-dark-foreground-subtle",
+          "reference": "color.neutral.600"
+        },
+        {
+          "name": "Foreground Disabled",
+          "token": "color.semantic.dark.foregroundDisabled",
+          "hex": "#5E697F",
+          "cssVar": "--shan-color-semantic-dark-foreground-disabled",
+          "reference": "color.neutral.600"
+        },
+        {
+          "name": "Border Subtle",
+          "token": "color.semantic.dark.borderSubtle",
+          "hex": "#191E30",
+          "cssVar": "--shan-color-semantic-dark-border-subtle",
+          "reference": "color.neutral.900"
         },
         {
           "name": "Border",
           "token": "color.semantic.dark.border",
           "hex": "#2C3245",
           "cssVar": "--shan-color-semantic-dark-border",
-          "reference": "color.foundation.inkBorder"
+          "reference": "color.neutral.800"
+        },
+        {
+          "name": "Border Strong",
+          "token": "color.semantic.dark.borderStrong",
+          "hex": "#4E586D",
+          "cssVar": "--shan-color-semantic-dark-border-strong",
+          "reference": "color.neutral.700"
         },
         {
           "name": "Primary",
@@ -582,9 +1182,16 @@
           "reference": "color.brand.ignition.300"
         },
         {
+          "name": "Primary Hover",
+          "token": "color.semantic.dark.primaryHover",
+          "hex": "#FFC7CB",
+          "cssVar": "--shan-color-semantic-dark-primary-hover",
+          "reference": "color.brand.ignition.200"
+        },
+        {
           "name": "Primary Action",
           "token": "color.semantic.dark.primaryAction",
-          "hex": "#FF4F70",
+          "hex": "#FD4D6E",
           "cssVar": "--shan-color-semantic-dark-primary-action",
           "reference": "color.brand.ignition.500"
         },
@@ -596,6 +1203,20 @@
           "reference": "color.brand.ignition.900"
         },
         {
+          "name": "On Primary",
+          "token": "color.semantic.dark.onPrimary",
+          "hex": "#0B1020",
+          "cssVar": "--shan-color-semantic-dark-on-primary",
+          "reference": "color.neutral.950"
+        },
+        {
+          "name": "Focus Ring",
+          "token": "color.semantic.dark.focusRing",
+          "hex": "#FF91A7",
+          "cssVar": "--shan-color-semantic-dark-focus-ring",
+          "reference": "color.brand.ignition.300"
+        },
+        {
           "name": "Success",
           "token": "color.semantic.dark.success",
           "hex": "#87C7AB",
@@ -603,11 +1224,60 @@
           "reference": "color.accent.fern.300"
         },
         {
+          "name": "Success Subtle",
+          "token": "color.semantic.dark.successSubtle",
+          "hex": "#00815D",
+          "cssVar": "--shan-color-semantic-dark-success-subtle",
+          "reference": "color.accent.fern.700"
+        },
+        {
           "name": "Warning",
           "token": "color.semantic.dark.warning",
-          "hex": "#D6B170",
+          "hex": "#F4D297",
           "cssVar": "--shan-color-semantic-dark-warning",
           "reference": "color.accent.solar.300"
+        },
+        {
+          "name": "Warning Subtle",
+          "token": "color.semantic.dark.warningSubtle",
+          "hex": "#946900",
+          "cssVar": "--shan-color-semantic-dark-warning-subtle",
+          "reference": "color.accent.solar.700"
+        },
+        {
+          "name": "Danger",
+          "token": "color.semantic.dark.danger",
+          "hex": "#FFA18F",
+          "cssVar": "--shan-color-semantic-dark-danger",
+          "reference": "color.accent.danger.300"
+        },
+        {
+          "name": "Danger Fill",
+          "token": "color.semantic.dark.dangerFill",
+          "hex": "#DB3012",
+          "cssVar": "--shan-color-semantic-dark-danger-fill",
+          "reference": "color.accent.danger.500"
+        },
+        {
+          "name": "Danger Subtle",
+          "token": "color.semantic.dark.dangerSubtle",
+          "hex": "#C02000",
+          "cssVar": "--shan-color-semantic-dark-danger-subtle",
+          "reference": "color.accent.danger.700"
+        },
+        {
+          "name": "Info",
+          "token": "color.semantic.dark.info",
+          "hex": "#7AC8F5",
+          "cssVar": "--shan-color-semantic-dark-info",
+          "reference": "color.accent.info.300"
+        },
+        {
+          "name": "Info Subtle",
+          "token": "color.semantic.dark.infoSubtle",
+          "hex": "#00729F",
+          "cssVar": "--shan-color-semantic-dark-info-subtle",
+          "reference": "color.accent.info.700"
         },
         {
           "name": "Intelligence",
@@ -617,25 +1287,25 @@
           "reference": "color.accent.aurora.300"
         },
         {
-          "name": "Focus",
-          "token": "color.semantic.dark.focus",
-          "hex": "#FF91A7",
-          "cssVar": "--shan-color-semantic-dark-focus",
-          "reference": "color.brand.ignition.300"
+          "name": "Intelligence Subtle",
+          "token": "color.semantic.dark.intelligenceSubtle",
+          "hex": "#573FC7",
+          "cssVar": "--shan-color-semantic-dark-intelligence-subtle",
+          "reference": "color.accent.aurora.700"
         },
         {
           "name": "Toast Background",
           "token": "color.semantic.dark.toastBackground",
           "hex": "#FFFFFF",
           "cssVar": "--shan-color-semantic-dark-toast-background",
-          "reference": "color.foundation.white"
+          "reference": "color.neutral.0"
         },
         {
           "name": "Toast Foreground",
           "token": "color.semantic.dark.toastForeground",
           "hex": "#0B1020",
           "cssVar": "--shan-color-semantic-dark-toast-foreground",
-          "reference": "color.foundation.ink"
+          "reference": "color.neutral.950"
         }
       ]
     }

@@ -63,11 +63,13 @@ for (const [name, color] of Object.entries(variants)) {
   }
 }
 
-const symbolPaths = symbolSource.match(/<path\b[^>]*\/>/g);
-const symbolGeometry = symbolSource.match(/<g[\s\S]*?<\/g>/)?.[0];
+const symbolPaths = symbolSource.match(/<path\b[^>]*(?:\/|>[\s\S]*?<\/path>)/g);
+let symbolGeometry = symbolSource.match(/<g[\s\S]*?<\/g>/)?.[0];
 const wordmarkGeometry = wordmarkSource.match(/<g[\s\S]*<\/g>/)?.[0];
 if (!symbolPaths || symbolPaths.length !== 3) throw new Error('Source symbol must contain three path elements.');
-if (!symbolGeometry) throw new Error('Source symbol must contain a root geometry group.');
+if (!symbolGeometry) {
+  symbolGeometry = symbolPaths.map(p => p.replace(/fill="#[^"]*"/g, 'fill="currentColor"')).join('\n  ');
+}
 if (!wordmarkGeometry) throw new Error('Source wordmark must contain glyph groups.');
 const logoTemplate = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1079.1701 252.02001" role="img" aria-labelledby="title desc">
   <title id="title">Shan Labs horizontal logo</title>
