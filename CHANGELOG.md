@@ -8,6 +8,26 @@ The project follows [Semantic Versioning](https://semver.org/):
 - **Minor:** new approved formats, templates, channels, or product accents.
 - **Patch:** corrected exports, metadata, documentation, or non-visual defects.
 
+## [Unreleased]
+
+### Breaking changes
+
+- Rebuilt the symbol as three straight paths on a 32-unit grid and changed the horizontal lockup to a 1.30× symbol-to-cap-height ratio with a tightly bounded `0 0 983.97 165` viewBox.
+- Updated four approved colour values: Ignition 500, Aurora 700, Fern 500, and Solar 300. `color.semantic.light.border` now resolves to the default border; the previous value moved to `borderSubtle`.
+- Expanded the token model with canonical neutral scales and additional semantic roles; existing consumers must review the changed colour values, border semantics, and lockup geometry above before upgrading.
+
+### Added
+
+- Added complete neutral, danger, info, and data-visualisation palettes; missing brand/accent steps; light/dark semantic roles; and typography family, weight, size, tracking, and line-height tokens.
+- Added approved SVG and PNG logo variants, dedicated favicon and avatar assets, logo usage guidance, consolidated release notes, and a responsive GitHub Pages logo reference.
+- Added checksum validation for every approved production asset so builds and local renderers cannot silently replace reviewed artwork.
+
+### Fixed
+
+- Corrected Solar ramp direction, Aurora perceptual spacing, Fern chroma balance, and Ignition non-text contrast.
+- Corrected favicon, avatar, and horizontal lockup geometry and preserved the approved exports during routine builds.
+- Fixed GitHub Pages asset paths, integrated header logos, active navigation, responsive logo presentation, and the shared script crash on pages without a colour palette.
+
 ## [1.0.0] - 2026-08-20
 
 ### Fixed

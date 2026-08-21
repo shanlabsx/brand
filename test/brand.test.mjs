@@ -4,6 +4,7 @@ import { access, readFile } from 'node:fs/promises';
 import { basename, resolve } from 'node:path';
 import { DOCS_BRAND_ASSETS, generatePalette } from '../scripts/build-docs.mjs';
 import { flattenTokens, readJson, resolveTokenValue, root } from '../scripts/lib.mjs';
+import { planVersionUpdate } from '../scripts/release-version.mjs';
 import { contrastRatio, hexToOklch, oklchToHex } from '../scripts/color.mjs';
 
 const tokenDocument = await readJson('tokens/brand.tokens.json');
@@ -16,6 +17,35 @@ const at = (path) => {
 
 test('all token references resolve', () => {
   for (const [, token] of tokens) assert.doesNotThrow(() => resolveTokenValue(token.$value, tokens));
+});
+
+test('release accepts a brand version already staged at the target version', () => {
+  assert.deepEqual(planVersionUpdate('1.0.0', '2.0.0', '2.0.0'), {
+    packageVersion: '1.0.0',
+    brandVersion: '2.0.0',
+    updatePackage: true,
+    updateBrand: false
+  });
+});
+
+test('release updates both version files when they match the current release', () => {
+  assert.deepEqual(planVersionUpdate('1.0.0', '1.0.0', '2.0.0'), {
+    packageVersion: '1.0.0',
+    brandVersion: '1.0.0',
+    updatePackage: true,
+    updateBrand: true
+  });
+});
+
+test('release rejects unrelated version mismatches and non-incrementing targets', () => {
+  assert.throws(
+    () => planVersionUpdate('1.0.0', '1.5.0', '2.0.0'),
+    /Version mismatch/
+  );
+  assert.throws(
+    () => planVersionUpdate('2.0.0', '2.0.0', '2.0.0'),
+    /not newer/
+  );
 });
 
 test('color math round-trips every token through OKLCH without drift', () => {
