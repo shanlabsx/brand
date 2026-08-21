@@ -95,15 +95,37 @@ for (const [name, replacements] of Object.entries(logoVariants)) {
 await write('assets/logos/svg/wordmark-ink.svg', svgWithColors(wordmarkSource, {}, 'Shan Labs wordmark — ink'));
 await write('assets/logos/svg/wordmark-white.svg', svgWithColors(wordmarkSource, { [INK]: WHITE }, 'Shan Labs wordmark — white'));
 
-const favicon = svgWithColors(symbolSource, {}, 'Shan Labs favicon');
+// Favicon and avatar are hand-crafted to exact specs (1:32 scale, baked coordinates).
+// favicon.svg: 16×16 viewBox, mark 10u×12u at x 3..13 y 2..14 (1:32 of master, ratio 3:1:4:1:3)
+// avatar-dark.svg: 512×512 viewBox with mark scaled 0.75 and offset to center (coordinates baked, no transforms)
+const favicon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" role="img" aria-labelledby="title desc">
+  <title id="title">Shan Labs favicon</title>
+  <desc id="desc">Two horizontal rails linked by a 45° diagonal bar, constructed on a 32-unit grid.</desc>
+  <path fill="${CORAL}" d="M3 2H13V5H3Z"></path>
+  <path fill="${CORAL}" d="M3 6H9L13 10H7Z"></path>
+  <path fill="${CORAL}" d="M3 11H13V14H3Z"></path>
+</svg>\n`;
 await write('assets/icons/favicon.svg', favicon);
+
+// Avatar uses scaled symbol geometry with coordinates baked in (no transforms)
+const avatarMarkScaled = symbolPaths
+  .map(p => p.replace(/fill="#[^"]*"/g, `fill="${CORAL}"`))
+  .map(p => p
+    .replace(/M(\d+) (\d+)/g, (m, x, y) => `M${Math.round(Number(x) * 0.75 + 88)} ${Math.round(Number(y) * 0.75 + 88)}`)
+    .replace(/H(\d+)/g, (m, x) => `H${Math.round(Number(x) * 0.75 + 88)}`)
+    .replace(/L(\d+) (\d+)/g, (m, x, y) => `L${Math.round(Number(x) * 0.75 + 88)} ${Math.round(Number(y) * 0.75 + 88)}`)
+    .replace(/V(\d+)/g, (m, y) => `V${Math.round(Number(y) * 0.75 + 88)}`)
+  )
+  .join('\n  ');
+const avatar = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Shan Labs avatar — dark</title>
+  <desc id="desc">The Shan Labs symbol on Cosmic Ink, padded for circular and rounded-square crops.</desc>
+  <rect width="512" height="512" fill="${INK}"/>
+  ${avatarMarkScaled}
+</svg>\n`;
+await write('assets/icons/avatar-dark.svg', avatar);
+
 for (const size of [16, 32, 48, 180, 192, 512]) {
   await render(`${root}/assets/icons/favicon.svg`, `${root}/assets/icons/favicon-${size}.png`, size);
 }
-
-const avatar = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Shan Labs avatar">
-  <rect width="1024" height="1024" fill="${INK}"/>
-  <g transform="translate(88 88) scale(1.65625)">${symbolGeometry}</g>
-</svg>\n`;
-await write('assets/icons/avatar-dark.svg', avatar);
 await render(`${root}/assets/icons/avatar-dark.svg`, `${root}/assets/icons/avatar-dark-1024.png`, 1024);
